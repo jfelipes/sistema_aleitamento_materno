@@ -8,22 +8,14 @@ Essa aplicação tornará possível a interligação entre **lactantes doadoras*
 
 > Cadastros e Edição
 
-- [ ] Documentação.
-- [ ] Forma de Contato.
-- [ ] Endereço.
-- [ ] Doador, Receptor, Agente.
+- [x] Endereço.
+- [x] Forma de Contato.
+- [x] Pessoa.
 - [ ] Leite Materno (Interligado os bancos de leite).
+- [ ] Comprovante.
 - [ ] Agendamento.
 
-> Listagens
-
-- [ ] Documentação, utilizando ou não filtros.
-- [ ] Forma de Contato, utilizando filtragens.
-- [ ] Pessoas.
-- [ ] Leite Materno, utilizando filtragens por tipo e ou banco.
-- [ ] Agendamentos, permitindo atribuição ou não de relevância.
-
-> Implementações
+> Possíveis Implementações
 
 - [ ] Possibilitar contato direto entre interessados na iniciativa.
 
