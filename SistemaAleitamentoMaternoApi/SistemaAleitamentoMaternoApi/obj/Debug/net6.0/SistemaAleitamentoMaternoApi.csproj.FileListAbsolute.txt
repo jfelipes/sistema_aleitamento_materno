@@ -41,3 +41,5 @@ C:\Users\jhonn\Documents\Repositórios\sistema_aleitamento_materno_api\SistemaAl
 C:\Users\jhonn\Documents\Repositórios\sistema_aleitamento_materno_api\SistemaAleitamentoMaternoApi\SistemaAleitamentoMaternoApi\bin\Debug\net6.0\System.Web.WebPages.Razor.dll
 C:\Users\jhonn\Documents\Repositórios\sistema_aleitamento_materno_api\SistemaAleitamentoMaternoApi\SistemaAleitamentoMaternoApi\bin\Debug\net6.0\System.Web.WebPages.dll
 C:\Users\jhonn\Documents\Repositórios\sistema_aleitamento_materno_api\SistemaAleitamentoMaternoApi\SistemaAleitamentoMaternoApi\bin\Debug\net6.0\Microsoft.Web.Infrastructure.dll
+C:\Users\jhonn\Documents\Repositórios\sistema_aleitamento_materno_api\SistemaAleitamentoMaternoApi\SistemaAleitamentoMaternoApi\bin\Debug\net6.0\AutoMapper.dll
+C:\Users\jhonn\Documents\Repositórios\sistema_aleitamento_materno_api\SistemaAleitamentoMaternoApi\SistemaAleitamentoMaternoApi\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll

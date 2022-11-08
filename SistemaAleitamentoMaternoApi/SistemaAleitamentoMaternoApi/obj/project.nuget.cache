@@ -1,13 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "gP2t85A4WPcqU+BrrbNZFLGBPpiFOKcngluux9ugyKuH+lNSPRBozXo5spOpgn7xWqTIl/L5jc8NqXJdqh9LhQ==",
+  "dgSpecHash": "qYoSePwvoj5WNnNcKHXXOU3aXuxLvj1n88uMC3D8em+JSci4t1R3WC2stUAM7qSUkc7bFef/2E707h84onpsjw==",
   "success": true,
   "projectFilePath": "C:\\Users\\jhonn\\Documents\\Repositórios\\sistema_aleitamento_materno_api\\SistemaAleitamentoMaternoApi\\SistemaAleitamentoMaternoApi\\SistemaAleitamentoMaternoApi.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\jhonn\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
+    "C:\\Users\\jhonn\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.0\\automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",
     "C:\\Users\\jhonn\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\jhonn\\.nuget\\packages\\microsoft.aspnet.mvc\\5.2.9\\microsoft.aspnet.mvc.5.2.9.nupkg.sha512",
     "C:\\Users\\jhonn\\.nuget\\packages\\microsoft.aspnet.razor\\3.2.9\\microsoft.aspnet.razor.3.2.9.nupkg.sha512",
     "C:\\Users\\jhonn\\.nuget\\packages\\microsoft.aspnet.webpages\\3.2.9\\microsoft.aspnet.webpages.3.2.9.nupkg.sha512",
+    "C:\\Users\\jhonn\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\jhonn\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.10\\microsoft.entityframeworkcore.6.0.10.nupkg.sha512",
     "C:\\Users\\jhonn\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\6.0.10\\microsoft.entityframeworkcore.abstractions.6.0.10.nupkg.sha512",
     "C:\\Users\\jhonn\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\6.0.10\\microsoft.entityframeworkcore.analyzers.6.0.10.nupkg.sha512",

@@ -4,11 +4,9 @@ using System.ComponentModel;
 
 namespace SistemaAleitamentoMaternoApi.Models
 {
-    public class Pessoa : EntidadeBase
+    public class Pessoa : BaseEntity
     {
-        //[Required]
-        //[DisplayName("Tipo de Atribuição")]
-        //public ETipoPessoa Tipo { get; set; } = ETipoPessoa.Normal;
+        public bool? Ativo { get; set; } = true;
         [Required]
         [StringLength(50, ErrorMessage = "Seu nome completo não deveria exceder 50 dígitos.")]
         [DisplayName("Nome Completo")]
@@ -24,6 +22,6 @@ namespace SistemaAleitamentoMaternoApi.Models
 
         [ForeignKey("Endereco")]
         public Guid? EnderecoId { get; set; }
-        public virtual ICollection<Contato> Contatos { get; set; } = new HashSet<Contato>();
+        public virtual IEnumerable<Contato> Contatos { get; set; } = new List<Contato>();
     }
 }

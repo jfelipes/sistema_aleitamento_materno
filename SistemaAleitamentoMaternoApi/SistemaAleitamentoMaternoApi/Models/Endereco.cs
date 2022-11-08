@@ -3,7 +3,7 @@ using System.ComponentModel;
 
 namespace SistemaAleitamentoMaternoApi.Models
 {
-    public class Endereco : EntidadeBase
+    public class Endereco : BaseEntity
     {
         [Required]
         [StringLength(8, ErrorMessage = "Seu Cep não deve exceder 8 dígitos.")]

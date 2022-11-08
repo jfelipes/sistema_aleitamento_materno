@@ -1,6 +1,12 @@
 using Microsoft.EntityFrameworkCore;
+using SistemaAleitamentoMaternoApi.ApplicationService;
 using SistemaAleitamentoMaternoApi.Data;
-using SistemaAleitamentoMaternoApi.Models;
+using SistemaAleitamentoMaternoApi.Interfaces.ApplicationService;
+using SistemaAleitamentoMaternoApi.Interfaces.Repositories;
+using SistemaAleitamentoMaternoApi.Interfaces.Services;
+using SistemaAleitamentoMaternoApi.Profiles;
+using SistemaAleitamentoMaternoApi.Repositories;
+using SistemaAleitamentoMaternoApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,7 +20,21 @@ builder.Services.AddSwaggerGen();
 //AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 builder.Services.AddEntityFrameworkNpgsql().AddDbContext<SistemaContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("ConexaoPostgre")));
-builder.Services.AddScoped<SistemaContext, SistemaContext>();
+
+builder.Services.AddAutoMapper(typeof(ContatoProfile));
+builder.Services.AddAutoMapper(typeof(EnderecoProfile));
+builder.Services.AddAutoMapper(typeof(PessoaProfile));
+
+// Realizando Injeção de Dependências.
+builder.Services.AddScoped<IApplicationServiceContato, ApplicationServiceContato>();
+builder.Services.AddScoped<IApplicationServiceEndereco, ApplicationServiceEndereco>();
+builder.Services.AddScoped<IApplicationServicePessoa, ApplicationServicePessoa>();
+builder.Services.AddScoped<IContatoService, ContatoService>();
+builder.Services.AddScoped<IEnderecoService, EnderecoService>();
+builder.Services.AddScoped<IPessoaService, PessoaService>();
+builder.Services.AddScoped<IContatoRepository, ContatoRepository>();
+builder.Services.AddScoped<IEnderecoRepository, EnderecoRepository>();
+builder.Services.AddScoped<IPessoaRepository, PessoaRepository>();
 
 var app = builder.Build();
 
@@ -27,6 +47,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthorization();
 app.UseAuthorization();
 
 app.MapControllers();

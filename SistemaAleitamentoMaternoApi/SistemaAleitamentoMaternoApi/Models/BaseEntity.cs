@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SistemaAleitamentoMaternoApi.Models
 {
-    public class EntidadeBase
+    public class BaseEntity
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]

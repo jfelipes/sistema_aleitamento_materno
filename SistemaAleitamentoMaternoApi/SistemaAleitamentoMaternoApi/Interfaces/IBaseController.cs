@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SistemaAleitamentoMaternoApi.Data;
 
-namespace SistemaAleitamentoMaternoApi.Controllers
+namespace SistemaAleitamentoMaternoApi.Interfaces
 {
     public interface IBaseController<TEntity> where TEntity : class
     {

@@ -106,6 +106,9 @@ namespace SistemaAleitamentoMaternoApi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
+                    b.Property<bool?>("Ativo")
+                        .HasColumnType("boolean");
+
                     b.Property<string>("Cpf")
                         .IsRequired()
                         .HasMaxLength(15)
