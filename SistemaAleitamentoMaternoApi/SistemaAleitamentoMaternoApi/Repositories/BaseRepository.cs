@@ -41,5 +41,10 @@ namespace SistemaAleitamentoMaternoApi.Repositories
             context.Set<TEntity>().Remove(entidade);
             context.SaveChanges();
         }
+
+        public void Salvar()
+        {
+            context.SaveChanges();
+        }
     }
 }

@@ -13,27 +13,27 @@ namespace SistemaAleitamentoMaternoApi.Services
             this.repository = repository;
         }
 
-        public void Adicionar(TEntity entidade)
+        public virtual void Adicionar(TEntity entidade)
         {
             repository.Adicionar(entidade);
         }
 
-        public void Atualizar(TEntity entidade)
+        public virtual void Atualizar(TEntity entidade)
         {
             repository.Atualizar(entidade);
         }
 
-        public TEntity FiltrarPorId(Guid id)
+        public virtual TEntity FiltrarPorId(Guid id)
         {
             return repository.FiltrarPorId(id);
         }
 
-        public IEnumerable<TEntity> Listar()
+        public virtual IEnumerable<TEntity> Listar()
         {
             return repository.Listar();
         }
 
-        public void Remover(TEntity entidade)
+        public virtual void Remover(TEntity entidade)
         {
             repository.Remover(entidade);
         }

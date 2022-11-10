@@ -9,5 +9,6 @@ namespace SistemaAleitamentoMaternoApi.Interfaces.Repositories
         void Remover(TEntity entidade);
         IEnumerable<TEntity> Listar();
         TEntity FiltrarPorId(Guid id);
+        void Salvar();
     }
 }

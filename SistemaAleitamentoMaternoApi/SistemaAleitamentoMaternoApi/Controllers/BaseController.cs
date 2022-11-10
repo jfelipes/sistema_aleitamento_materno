@@ -2,7 +2,6 @@
 using SistemaAleitamentoMaternoApi.Dtos;
 using SistemaAleitamentoMaternoApi.Interfaces;
 using SistemaAleitamentoMaternoApi.Interfaces.ApplicationService;
-using System;
 
 namespace SistemaAleitamentoMaternoApi.Controllers
 {
@@ -18,7 +17,7 @@ namespace SistemaAleitamentoMaternoApi.Controllers
         }
 
         [HttpPost]
-        public virtual ActionResult<TEntity> Adicionar([FromBody] TEntity entidadeDto)
+        public ActionResult<TEntity> Adicionar([FromBody] TEntity entidadeDto)
         {
             try
             {
@@ -40,12 +39,13 @@ namespace SistemaAleitamentoMaternoApi.Controllers
         {
             try
             {
-                if (entidadeDto == null)
+                var entidadeDtoCadastrada = applicationService.FiltrarPorId(entidadeDto.Id);
+                if (entidadeDtoCadastrada == null)
                 {
                     return NotFound();
                 }
-                applicationService.Atualizar(entidadeDto);
-                return Ok(entidadeDto);
+                applicationService.Atualizar(entidadeDtoCadastrada);
+                return Ok(entidadeDtoCadastrada);
             }
             catch (Exception exception)
             {
