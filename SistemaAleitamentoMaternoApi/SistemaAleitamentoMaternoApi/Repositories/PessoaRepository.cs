@@ -1,6 +1,7 @@
 ﻿using SistemaAleitamentoMaternoApi.Interfaces.Repositories;
 using SistemaAleitamentoMaternoApi.Models;
 using SistemaAleitamentoMaternoApi.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace SistemaAleitamentoMaternoApi.Repositories
 {
@@ -11,6 +12,14 @@ namespace SistemaAleitamentoMaternoApi.Repositories
         public PessoaRepository(SistemaContext context) : base(context)
         {
             this.context = context;
+        }
+
+        public IEnumerable<Pessoa> Listar()
+        {
+            return context.Set<Pessoa>()
+                .Include(pessoa => pessoa.Contatos)
+                .Include(pessoa => pessoa.Operacoes)
+                .ToList();
         }
     }
 }

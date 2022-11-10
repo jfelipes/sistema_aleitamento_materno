@@ -6,9 +6,12 @@ namespace SistemaAleitamentoMaternoApi.Data
 {
     public class SistemaContext : DbContext
     {
+        public DbSet<Agendamento> Agendamentos { get; set; }
         public DbSet<Contato> Contatos { get; set; }
         public DbSet<Endereco> Enderecos { get; set; }
         public DbSet<Pessoa> Pessoas { get; set; }
+        public DbSet<LeiteMaterno> LeitesMaterno { get; set; }
+        public DbSet<Operacao> Operacoes { get; set; }
 
         public SistemaContext(DbContextOptions<SistemaContext> options) : base(options) { }
 

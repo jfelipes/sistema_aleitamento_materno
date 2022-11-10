@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using SistemaAleitamentoMaternoApi.Data;
@@ -11,9 +12,10 @@ using SistemaAleitamentoMaternoApi.Data;
 namespace SistemaAleitamentoMaternoApi.Migrations
 {
     [DbContext(typeof(SistemaContext))]
-    partial class SistemaContextModelSnapshot : ModelSnapshot
+    [Migration("20221110132049_AdicaoEntidades")]
+    partial class AdicaoEntidades
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -51,8 +53,6 @@ namespace SistemaAleitamentoMaternoApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("OperacaoId");
-
                     b.ToTable("Agendamentos");
                 });
 
@@ -67,7 +67,8 @@ namespace SistemaAleitamentoMaternoApi.Migrations
 
                     b.Property<string>("Dado")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
 
                     b.Property<Guid>("PessoaId")
                         .HasColumnType("uuid");
@@ -191,8 +192,6 @@ namespace SistemaAleitamentoMaternoApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PessoaId");
-
                     b.ToTable("Operacoes");
                 });
 
@@ -231,17 +230,6 @@ namespace SistemaAleitamentoMaternoApi.Migrations
                     b.ToTable("Pessoas");
                 });
 
-            modelBuilder.Entity("SistemaAleitamentoMaternoApi.Models.Agendamento", b =>
-                {
-                    b.HasOne("SistemaAleitamentoMaternoApi.Models.Operacao", "Operacao")
-                        .WithMany()
-                        .HasForeignKey("OperacaoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Operacao");
-                });
-
             modelBuilder.Entity("SistemaAleitamentoMaternoApi.Models.Contato", b =>
                 {
                     b.HasOne("SistemaAleitamentoMaternoApi.Models.Pessoa", null)
@@ -251,20 +239,9 @@ namespace SistemaAleitamentoMaternoApi.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("SistemaAleitamentoMaternoApi.Models.Operacao", b =>
-                {
-                    b.HasOne("SistemaAleitamentoMaternoApi.Models.Pessoa", null)
-                        .WithMany("Operacoes")
-                        .HasForeignKey("PessoaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("SistemaAleitamentoMaternoApi.Models.Pessoa", b =>
                 {
                     b.Navigation("Contatos");
-
-                    b.Navigation("Operacoes");
                 });
 #pragma warning restore 612, 618
         }

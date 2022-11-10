@@ -15,7 +15,7 @@ namespace SistemaAleitamentoMaternoApi.Services
 
         public void Adicionar(Endereco entidade)
         {
-            entidade.Logradouro = "Vamo realizar um testezim";
+            //entidade.Logradouro = "Realizando teste";
             base.Adicionar(entidade);
         }
     }
