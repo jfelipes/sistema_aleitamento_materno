@@ -1,12 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using SistemaAleitamentoMaternoApi.Models;
+using SistemaAleitamentoMaternoApi.Services;
 
 namespace SistemaAleitamentoMaternoApi.Data
 {
     public class SistemaContext : DbContext
     {
         public DbSet<Agendamento> Agendamentos { get; set; }
+        public DbSet<BancoAleitamento> BancosAleitamento { get; set; }
+        public DbSet<Comprovante> Comprovantes { get; set; }
         public DbSet<Contato> Contatos { get; set; }
         public DbSet<Endereco> Enderecos { get; set; }
         public DbSet<Pessoa> Pessoas { get; set; }
@@ -23,6 +26,14 @@ namespace SistemaAleitamentoMaternoApi.Data
                 entidade.AddProperty("CreatedDate", typeof(DateTime));
                 entidade.AddProperty("UpdatedDate", typeof(DateTime));
             }
+            modelBuilder.Entity<Agendamento>()
+                .Property(agendamento => agendamento.Status)
+                .HasConversion<string>()
+                .HasMaxLength(50);
+            modelBuilder.Entity<Operacao>()
+                .Property(operacao => operacao.TipoOperacao)
+                .HasConversion<string>()
+                .HasMaxLength(50);
         }
 
         public override int SaveChanges()

@@ -18,17 +18,14 @@ namespace SistemaAleitamentoMaternoApi.Controllers
         {
             try
             {
-                var leiteMaterno = applicationService.FiltrarPorId(leiteId);
-                if (leiteMaterno == null)
-                {
-                    return NotFound();
-                }
                 applicationService.Retirar(leiteId, receptorId);
-                return Ok(leiteMaterno);
+                var leiteMaternoPosOperacao = applicationService.FiltrarPorId(leiteId);
+                return Ok(leiteMaternoPosOperacao);
             }
             catch (Exception exception)
             {
-                throw exception;
+                LidarComExcecoes(exception);
+                return BadRequest(ModelState);
             }
         }
     }

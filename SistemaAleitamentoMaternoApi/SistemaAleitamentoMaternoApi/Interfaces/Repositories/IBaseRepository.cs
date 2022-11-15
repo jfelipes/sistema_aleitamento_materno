@@ -1,4 +1,5 @@
-﻿using SistemaAleitamentoMaternoApi.Models;
+﻿using Microsoft.AspNetCore.Components.Web;
+using SistemaAleitamentoMaternoApi.Models;
 
 namespace SistemaAleitamentoMaternoApi.Interfaces.Repositories
 {
@@ -8,7 +9,7 @@ namespace SistemaAleitamentoMaternoApi.Interfaces.Repositories
         void Atualizar(TEntity entidade);
         void Remover(TEntity entidade);
         IEnumerable<TEntity> Listar();
-        TEntity FiltrarPorId(Guid id);
+        TEntity FiltrarPorId(Guid? id);
         void Salvar();
     }
 }

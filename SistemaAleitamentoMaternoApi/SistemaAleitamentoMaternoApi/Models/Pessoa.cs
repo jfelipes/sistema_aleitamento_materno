@@ -8,9 +8,8 @@ namespace SistemaAleitamentoMaternoApi.Models
         public string Nome { get; set; }
         public string Rg { get; set; }
         public string Cpf { get; set; }
-
         public Guid? EnderecoId { get; set; }
-        public virtual IEnumerable<Contato> Contatos { get; set; } = new List<Contato>();
-        public virtual IEnumerable<Operacao> Operacoes { get; set; } = new List<Operacao>();
+        public virtual EnderecoDto Endereco { get; set; }
+        public virtual IEnumerable<ContatoDto> Contatos { get; set; }
     }
 }

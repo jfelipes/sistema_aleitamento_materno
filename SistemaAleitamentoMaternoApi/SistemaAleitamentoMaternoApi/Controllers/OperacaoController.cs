@@ -14,5 +14,19 @@ namespace SistemaAleitamentoMaternoApi.Controllers
         {
             this.applicationService = applicationService;
         }
+
+        [HttpPut("listar-pessoa/{guid}")]
+        public ActionResult<IEnumerable<OperacaoDto>> OperacoesPorPessoa(Guid guid)
+        {
+            try
+            {
+                var operacoesDto = applicationService.Listar().Where(operacao => operacao.PessoaId == guid);
+                return Ok(operacoesDto);
+            }
+            catch (Exception exception)
+            {
+                return BadRequest(exception);
+            }
+        }
     }
 }

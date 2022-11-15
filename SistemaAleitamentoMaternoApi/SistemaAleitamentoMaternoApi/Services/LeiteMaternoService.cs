@@ -1,4 +1,6 @@
 ﻿using SistemaAleitamentoMaternoApi.ApplicationService;
+using SistemaAleitamentoMaternoApi.Exceptions.LeiteMaterno;
+using SistemaAleitamentoMaternoApi.Exceptions.Pessoa;
 using SistemaAleitamentoMaternoApi.Interfaces.Repositories;
 using SistemaAleitamentoMaternoApi.Interfaces.Services;
 using SistemaAleitamentoMaternoApi.Models;
@@ -16,36 +18,81 @@ namespace SistemaAleitamentoMaternoApi.Services
             this.pessoaRepository = pessoaRepository;
         }
 
-        public override void Adicionar(LeiteMaterno entidade)
+        public void TratarExcecoes(LeiteMaterno leiteMaterno)
         {
-            var receptor = pessoaRepository.FiltrarPorId(entidade.ReceptorId ?? Guid.Empty);
-            if (receptor != null)
+            var doador = pessoaRepository.FiltrarPorId(leiteMaterno.DoadorId);
+            var receptor = pessoaRepository.FiltrarPorId(leiteMaterno.ReceptorId);
+            bool foiInformadoReceptor = leiteMaterno.ReceptorId != null;
+            if (doador == null || (foiInformadoReceptor && receptor == null))
             {
-                if (entidade.DataRetirada == null)
-                {
-                    entidade.DataRetirada = DateTime.UtcNow;
-                }
-                entidade.Disponivel = false;
+                throw new PessoaInexistenteException();
             }
-            base.Adicionar(entidade);
+            if (doador.Ativo == false || (foiInformadoReceptor && receptor.Ativo == false))
+            {
+                throw new PessoaInativaException();
+            }
+            if (foiInformadoReceptor)
+            {
+                if (leiteMaterno.DataRetirada == null)
+                {
+                    throw new Exception("Você deve informar a data de retirada.");
+                }
+                if (leiteMaterno.Disponivel == true)
+                {
+                    throw new Exception("Você não pode cadastrar um leite materno com status disponivel, uma vez que você informou um receptor.");
+                }
+            }
+            else
+            {
+                if (leiteMaterno.Disponivel == false)
+                {
+                    throw new Exception("Você não pode cadastrar um leite materno com status indisponivel sem informar o receptor.");
+                }
+            }
+            if (leiteMaterno.DataRetirada != null)
+            {
+                if (DateTime.Compare((DateTime)leiteMaterno.DataEntrada, (DateTime)leiteMaterno.DataRetirada) > 0)
+                {
+                    throw new Exception("Não é possível realizar cadastrar uma retirada anterior à data de entrada.");
+                }
+            }
+        }
+
+        public override void Adicionar(LeiteMaterno leiteMaterno)
+        {
+            if (leiteMaterno.ReceptorId != null)
+            {
+                if (leiteMaterno.DataRetirada == null)
+                {
+                    leiteMaterno.DataRetirada = DateTime.UtcNow;
+                }
+            }
+            TratarExcecoes(leiteMaterno);
+            base.Adicionar(leiteMaterno);
+        }
+
+        public override void Atualizar(LeiteMaterno leiteMaterno)
+        {
+            TratarExcecoes(leiteMaterno);
+            base.Atualizar(leiteMaterno);
         }
 
         public void Retirar(Guid leiteId, Guid receptorId)
         {
             var leiteMaterno = leiteMaternoRepository.FiltrarPorId(leiteId);
-            var receptor = pessoaRepository.FiltrarPorId(receptorId);
-            if (leiteMaterno == null || receptor == null)
+            if (leiteMaterno == null)
             {
-                return;
+                throw new LeiteMaternoInexistenteException();
             }
-            if (leiteMaterno.DataRetirada == null)
+            if (leiteMaterno.Disponivel == false)
             {
-                leiteMaterno.DataRetirada = DateTime.UtcNow;
+                throw new LeiteMaternoIndisponivelException();
             }
+            leiteMaterno.ReceptorId = receptorId;
             leiteMaterno.Disponivel = false;
-
-            leiteMaternoRepository.Salvar();
-            pessoaRepository.Salvar();
+            leiteMaterno.DataRetirada = DateTime.UtcNow;
+            TratarExcecoes(leiteMaterno);
+            leiteMaternoRepository.Retirar(leiteMaterno);
         }
     }
 }

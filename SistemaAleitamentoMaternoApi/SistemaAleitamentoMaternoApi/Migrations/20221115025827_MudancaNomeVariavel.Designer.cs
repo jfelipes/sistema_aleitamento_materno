@@ -12,8 +12,8 @@ using SistemaAleitamentoMaternoApi.Data;
 namespace SistemaAleitamentoMaternoApi.Migrations
 {
     [DbContext(typeof(SistemaContext))]
-    [Migration("20221110132049_AdicaoEntidades")]
-    partial class AdicaoEntidades
+    [Migration("20221115025827_MudancaNomeVariavel")]
+    partial class MudancaNomeVariavel
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -30,30 +30,52 @@ namespace SistemaAleitamentoMaternoApi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<bool>("Cancelado")
-                        .HasColumnType("boolean");
-
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<DateTime>("DataAgendamento")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<DateTime?>("DataRealizacao")
+                    b.Property<DateTime?>("DataTermino")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<Guid>("OperacaoId")
                         .HasColumnType("uuid");
 
-                    b.Property<bool>("Realizado")
-                        .HasColumnType("boolean");
+                    b.Property<int?>("Status")
+                        .HasColumnType("integer");
 
                     b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("OperacaoId");
+
                     b.ToTable("Agendamentos");
+                });
+
+            modelBuilder.Entity("SistemaAleitamentoMaternoApi.Models.Comprovante", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<Guid>("OperacaoId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("PessoaId")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("UpdatedDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Comprovantes");
                 });
 
             modelBuilder.Entity("SistemaAleitamentoMaternoApi.Models.Contato", b =>
@@ -67,8 +89,7 @@ namespace SistemaAleitamentoMaternoApi.Migrations
 
                     b.Property<string>("Dado")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
+                        .HasColumnType("text");
 
                     b.Property<Guid>("PessoaId")
                         .HasColumnType("uuid");
@@ -77,8 +98,6 @@ namespace SistemaAleitamentoMaternoApi.Migrations
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("PessoaId");
 
                     b.ToTable("Contatos");
                 });
@@ -149,7 +168,7 @@ namespace SistemaAleitamentoMaternoApi.Migrations
                     b.Property<DateTime?>("DataRetirada")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<bool?>("Disponivel")
+                    b.Property<bool>("Disponivel")
                         .HasColumnType("boolean");
 
                     b.Property<Guid>("DoadorId")
@@ -186,6 +205,9 @@ namespace SistemaAleitamentoMaternoApi.Migrations
 
                     b.Property<Guid?>("ResponsavelId")
                         .HasColumnType("uuid");
+
+                    b.Property<int>("TipoOperacao")
+                        .HasColumnType("integer");
 
                     b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("timestamp with time zone");
@@ -230,18 +252,15 @@ namespace SistemaAleitamentoMaternoApi.Migrations
                     b.ToTable("Pessoas");
                 });
 
-            modelBuilder.Entity("SistemaAleitamentoMaternoApi.Models.Contato", b =>
+            modelBuilder.Entity("SistemaAleitamentoMaternoApi.Models.Agendamento", b =>
                 {
-                    b.HasOne("SistemaAleitamentoMaternoApi.Models.Pessoa", null)
-                        .WithMany("Contatos")
-                        .HasForeignKey("PessoaId")
+                    b.HasOne("SistemaAleitamentoMaternoApi.Models.Operacao", "Operacao")
+                        .WithMany()
+                        .HasForeignKey("OperacaoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
 
-            modelBuilder.Entity("SistemaAleitamentoMaternoApi.Models.Pessoa", b =>
-                {
-                    b.Navigation("Contatos");
+                    b.Navigation("Operacao");
                 });
 #pragma warning restore 612, 618
         }

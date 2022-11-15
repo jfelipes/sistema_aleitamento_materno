@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using SistemaAleitamentoMaternoApi.Enumerations;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SistemaAleitamentoMaternoApi.Dtos
@@ -7,12 +9,11 @@ namespace SistemaAleitamentoMaternoApi.Dtos
     {
         [ForeignKey("Operacao")]
         public Guid OperacaoId { get; set; }
-        public virtual OperacaoDto OperacaoDto { get; set; }
-        public bool Cancelado { get; set; } = false;
-        [Required(ErrorMessage = "Deve ser informado se o agendamento foi ou não realizado.")]
-        public bool Realizado { get; set; } = false;
+        public virtual OperacaoDto Operacao { get; set; }
+        [TypeConverter("string")]
+        public EStatusAgendamento? Status { get; set; } = EStatusAgendamento.Cadastrado;
         [Required(ErrorMessage = "Deve ser informado a data da agendamento.")]
-        public DateTime DataAgendamento { get; set; }
-        public DateTime? DataRealizacao { get; set; }
+        public DateTime DataAgendamento { get; set; } = DateTime.UtcNow;
+        public DateTime? DataTermino { get; set; }
     }
 }

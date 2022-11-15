@@ -5,6 +5,7 @@ namespace SistemaAleitamentoMaternoApi.Interfaces
 {
     public interface IBaseController<TEntity> where TEntity : BaseDto
     {
+        void LidarComExcecoes(Exception exception);
         ActionResult<IEnumerable<TEntity>> Listar();
         ActionResult<TEntity> FiltrarPorId(Guid id);
         ActionResult<TEntity> Adicionar([FromBody] TEntity entidadeDto);

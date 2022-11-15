@@ -22,14 +22,89 @@ namespace SistemaAleitamentoMaternoApi.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("SistemaAleitamentoMaternoApi.Models.Agendamento", b =>
+            modelBuilder.Entity("SistemaAleitamentoMaternoApi.Dtos.ContatoDto", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<bool>("Cancelado")
-                        .HasColumnType("boolean");
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Dado")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<Guid>("PessoaId")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("UpdatedDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PessoaId");
+
+                    b.ToTable("ContatoDto");
+                });
+
+            modelBuilder.Entity("SistemaAleitamentoMaternoApi.Dtos.EnderecoDto", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Bairro")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("character varying(30)");
+
+                    b.Property<string>("Cep")
+                        .IsRequired()
+                        .HasMaxLength(8)
+                        .HasColumnType("character varying(8)");
+
+                    b.Property<string>("Cidade")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
+
+                    b.Property<string>("Complemento")
+                        .HasMaxLength(40)
+                        .HasColumnType("character varying(40)");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Logradouro")
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("character varying(40)");
+
+                    b.Property<string>("Numero")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("character varying(10)");
+
+                    b.Property<string>("UF")
+                        .IsRequired()
+                        .HasMaxLength(2)
+                        .HasColumnType("character varying(2)");
+
+                    b.Property<DateTime>("UpdatedDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("EnderecoDto");
+                });
+
+            modelBuilder.Entity("SistemaAleitamentoMaternoApi.Models.Agendamento", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("timestamp with time zone");
@@ -37,14 +112,15 @@ namespace SistemaAleitamentoMaternoApi.Migrations
                     b.Property<DateTime>("DataAgendamento")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<DateTime?>("DataRealizacao")
+                    b.Property<DateTime?>("DataTermino")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<Guid>("OperacaoId")
                         .HasColumnType("uuid");
 
-                    b.Property<bool>("Realizado")
-                        .HasColumnType("boolean");
+                    b.Property<string>("Status")
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
 
                     b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("timestamp with time zone");
@@ -54,6 +130,46 @@ namespace SistemaAleitamentoMaternoApi.Migrations
                     b.HasIndex("OperacaoId");
 
                     b.ToTable("Agendamentos");
+                });
+
+            modelBuilder.Entity("SistemaAleitamentoMaternoApi.Models.BancoAleitamento", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime>("UpdatedDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("BancosAleitamento");
+                });
+
+            modelBuilder.Entity("SistemaAleitamentoMaternoApi.Models.Comprovante", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<Guid>("OperacaoId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("PessoaId")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("UpdatedDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Comprovantes");
                 });
 
             modelBuilder.Entity("SistemaAleitamentoMaternoApi.Models.Contato", b =>
@@ -76,8 +192,6 @@ namespace SistemaAleitamentoMaternoApi.Migrations
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("PessoaId");
 
                     b.ToTable("Contatos");
                 });
@@ -139,6 +253,12 @@ namespace SistemaAleitamentoMaternoApi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
+                    b.Property<Guid?>("BancoAleitamentoId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid?>("BancoLeiteId")
+                        .HasColumnType("uuid");
+
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("timestamp with time zone");
 
@@ -148,7 +268,7 @@ namespace SistemaAleitamentoMaternoApi.Migrations
                     b.Property<DateTime?>("DataRetirada")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<bool?>("Disponivel")
+                    b.Property<bool>("Disponivel")
                         .HasColumnType("boolean");
 
                     b.Property<Guid>("DoadorId")
@@ -161,6 +281,8 @@ namespace SistemaAleitamentoMaternoApi.Migrations
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("BancoAleitamentoId");
 
                     b.ToTable("LeitesMaterno");
                 });
@@ -186,12 +308,15 @@ namespace SistemaAleitamentoMaternoApi.Migrations
                     b.Property<Guid?>("ResponsavelId")
                         .HasColumnType("uuid");
 
+                    b.Property<string>("TipoOperacao")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
                     b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("PessoaId");
 
                     b.ToTable("Operacoes");
                 });
@@ -228,7 +353,18 @@ namespace SistemaAleitamentoMaternoApi.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("EnderecoId");
+
                     b.ToTable("Pessoas");
+                });
+
+            modelBuilder.Entity("SistemaAleitamentoMaternoApi.Dtos.ContatoDto", b =>
+                {
+                    b.HasOne("SistemaAleitamentoMaternoApi.Models.Pessoa", null)
+                        .WithMany("Contatos")
+                        .HasForeignKey("PessoaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("SistemaAleitamentoMaternoApi.Models.Agendamento", b =>
@@ -242,29 +378,32 @@ namespace SistemaAleitamentoMaternoApi.Migrations
                     b.Navigation("Operacao");
                 });
 
-            modelBuilder.Entity("SistemaAleitamentoMaternoApi.Models.Contato", b =>
+            modelBuilder.Entity("SistemaAleitamentoMaternoApi.Models.LeiteMaterno", b =>
                 {
-                    b.HasOne("SistemaAleitamentoMaternoApi.Models.Pessoa", null)
-                        .WithMany("Contatos")
-                        .HasForeignKey("PessoaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasOne("SistemaAleitamentoMaternoApi.Models.BancoAleitamento", "BancoAleitamento")
+                        .WithMany("Estoque")
+                        .HasForeignKey("BancoAleitamentoId");
+
+                    b.Navigation("BancoAleitamento");
                 });
 
-            modelBuilder.Entity("SistemaAleitamentoMaternoApi.Models.Operacao", b =>
+            modelBuilder.Entity("SistemaAleitamentoMaternoApi.Models.Pessoa", b =>
                 {
-                    b.HasOne("SistemaAleitamentoMaternoApi.Models.Pessoa", null)
-                        .WithMany("Operacoes")
-                        .HasForeignKey("PessoaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasOne("SistemaAleitamentoMaternoApi.Dtos.EnderecoDto", "Endereco")
+                        .WithMany()
+                        .HasForeignKey("EnderecoId");
+
+                    b.Navigation("Endereco");
+                });
+
+            modelBuilder.Entity("SistemaAleitamentoMaternoApi.Models.BancoAleitamento", b =>
+                {
+                    b.Navigation("Estoque");
                 });
 
             modelBuilder.Entity("SistemaAleitamentoMaternoApi.Models.Pessoa", b =>
                 {
                     b.Navigation("Contatos");
-
-                    b.Navigation("Operacoes");
                 });
 #pragma warning restore 612, 618
         }

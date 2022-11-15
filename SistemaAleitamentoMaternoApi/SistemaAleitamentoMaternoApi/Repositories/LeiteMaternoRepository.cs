@@ -1,4 +1,5 @@
-﻿using SistemaAleitamentoMaternoApi.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using SistemaAleitamentoMaternoApi.Data;
 using SistemaAleitamentoMaternoApi.Interfaces.Repositories;
 using SistemaAleitamentoMaternoApi.Models;
 
@@ -11,6 +12,12 @@ namespace SistemaAleitamentoMaternoApi.Repositories
         public LeiteMaternoRepository(SistemaContext context) : base(context)
         {
             this.context = context;
+        }
+
+        public void Retirar(LeiteMaterno leiteMaterno)
+        {
+            context.Entry(leiteMaterno).State = EntityState.Modified;
+            context.SaveChanges();
         }
     }
 }

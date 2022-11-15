@@ -1,7 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper.Configuration.Annotations;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using SistemaAleitamentoMaternoApi.Dtos;
+using SistemaAleitamentoMaternoApi.Exceptions.Endereco;
+using SistemaAleitamentoMaternoApi.Exceptions.LeiteMaterno;
+using SistemaAleitamentoMaternoApi.Exceptions.Operacao;
+using SistemaAleitamentoMaternoApi.Exceptions.Pessoa;
 using SistemaAleitamentoMaternoApi.Interfaces;
 using SistemaAleitamentoMaternoApi.Interfaces.ApplicationService;
+using System;
 
 namespace SistemaAleitamentoMaternoApi.Controllers
 {
@@ -16,6 +23,38 @@ namespace SistemaAleitamentoMaternoApi.Controllers
             this.applicationService = applicationService;
         }
 
+        [NonAction]
+        public virtual void LidarComExcecoes(Exception exception) 
+        {
+            if (exception is EnderecoInexistenteException)
+            {
+                ModelState.AddModelError("EnderecoNotFound", exception.Message);
+            }
+            else if (exception is LeiteMaternoIndisponivelException)
+            {
+                ModelState.AddModelError("LeiteMaternoIndisponivel", exception.Message);
+            }
+            else if (exception is LeiteMaternoInexistenteException)
+            {
+                ModelState.AddModelError("LeiteMaternoNotFound", exception.Message);
+            }
+            else if (exception is OperacaoInexistenteException)
+            {
+                ModelState.AddModelError("OperacaoNotFound", exception.Message);
+            }
+            else if (exception is PessoaInativaException)
+            {
+                ModelState.AddModelError("PessoaInativa", exception.Message);
+            }
+            else if (exception is PessoaInexistenteException)
+            {
+                ModelState.AddModelError("PessoaNotFound", exception.Message);
+            } else
+            {
+                ModelState.AddModelError("Genérica", exception.Message);
+            }
+        }
+
         [HttpPost]
         public ActionResult<TEntity> Adicionar([FromBody] TEntity entidadeDto)
         {
@@ -26,11 +65,13 @@ namespace SistemaAleitamentoMaternoApi.Controllers
                     return NotFound();
                 }
                 applicationService.Adicionar(entidadeDto);
-                return Ok(entidadeDto);
+                var entidadePosOperacao = applicationService.FiltrarPorId(entidadeDto.Id);
+                return Ok(entidadePosOperacao);
             }
             catch (Exception exception)
             {
-                throw exception;
+                LidarComExcecoes(exception);
+                return BadRequest(ModelState);
             }
         }
 
@@ -45,11 +86,13 @@ namespace SistemaAleitamentoMaternoApi.Controllers
                     return NotFound();
                 }
                 applicationService.Atualizar(entidadeDtoCadastrada);
-                return Ok(entidadeDtoCadastrada);
+                var entidadePosOperacao = applicationService.FiltrarPorId(entidadeDto.Id);
+                return Ok(entidadePosOperacao);
             }
             catch (Exception exception)
             {
-                throw exception;
+                LidarComExcecoes(exception);
+                return BadRequest(ModelState);
             }
         }
 
@@ -61,7 +104,7 @@ namespace SistemaAleitamentoMaternoApi.Controllers
             {
                 return NotFound();
             }
-            return Ok(applicationService.FiltrarPorId(id));
+            return Ok(entidadeDto);
         }
 
         [HttpGet]
@@ -85,7 +128,7 @@ namespace SistemaAleitamentoMaternoApi.Controllers
             }
             catch (Exception exception)
             {
-                throw exception;
+                return BadRequest(exception.Message);
             }
         }
     }

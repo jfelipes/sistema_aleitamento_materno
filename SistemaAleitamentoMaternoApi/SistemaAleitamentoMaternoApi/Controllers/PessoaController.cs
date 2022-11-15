@@ -34,7 +34,7 @@ namespace SistemaAleitamentoMaternoApi.Controllers
             }
             catch (Exception exception)
             {
-                throw exception;
+                return BadRequest(exception);
             }
         }
 

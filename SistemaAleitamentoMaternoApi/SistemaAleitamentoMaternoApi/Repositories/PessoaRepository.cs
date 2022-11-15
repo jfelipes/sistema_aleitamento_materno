@@ -17,8 +17,8 @@ namespace SistemaAleitamentoMaternoApi.Repositories
         public IEnumerable<Pessoa> Listar()
         {
             return context.Set<Pessoa>()
+                .Include(pessoa => pessoa.Endereco)
                 .Include(pessoa => pessoa.Contatos)
-                .Include(pessoa => pessoa.Operacoes)
                 .ToList();
         }
     }

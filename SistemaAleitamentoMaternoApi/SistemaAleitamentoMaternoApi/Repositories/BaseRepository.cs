@@ -26,8 +26,12 @@ namespace SistemaAleitamentoMaternoApi.Repositories
             context.SaveChanges();
         }
 
-        public TEntity FiltrarPorId(Guid id)
+        public TEntity FiltrarPorId(Guid? id)
         {
+            if (id == null)
+            {
+                return null;
+            }
             return context.Set<TEntity>().AsNoTracking().FirstOrDefault(entidade => entidade.Id == id);
         }
 
