@@ -13,7 +13,7 @@ namespace SistemaAleitamentoMaternoApi.Controllers
             this.applicationService = applicationService;
         }
 
-        [HttpPut("remover/{leiteId}&{receptorId}")]
+        [HttpPatch("remover/{leiteId}&{receptorId}")]
         public ActionResult Retirar(Guid leiteId, Guid receptorId)
         {
             try

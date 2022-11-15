@@ -14,7 +14,7 @@ namespace SistemaAleitamentoMaternoApi.Controllers
             this.applicationService = applicationService;
         }
 
-        [HttpPut("ativar/{guid}")]
+        [HttpPatch("ativar/{guid}")]
         public ActionResult Ativar(Guid guid)
         {
             try
@@ -38,7 +38,7 @@ namespace SistemaAleitamentoMaternoApi.Controllers
             }
         }
 
-        [HttpPut("desativar/{guid}")]
+        [HttpPatch("desativar/{guid}")]
         public ActionResult Desativar(Guid guid)
         {
             try

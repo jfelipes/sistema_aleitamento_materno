@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using SistemaAleitamentoMaternoApi.Dtos;
+using SistemaAleitamentoMaternoApi.Exceptions.BancoAleitamento;
 using SistemaAleitamentoMaternoApi.Exceptions.Endereco;
 using SistemaAleitamentoMaternoApi.Exceptions.LeiteMaterno;
 using SistemaAleitamentoMaternoApi.Exceptions.Operacao;
@@ -30,6 +31,14 @@ namespace SistemaAleitamentoMaternoApi.Controllers
             {
                 ModelState.AddModelError("EnderecoNotFound", exception.Message);
             }
+            else if (exception is BancoAleitamentoInexistenteException)
+            {
+                ModelState.AddModelError("BancoAleitamentoNotFound", exception.Message);
+            }
+            else if (exception is BancoAleitamentoPessoaInvalidaException)
+            {
+                ModelState.AddModelError("BancoAleitamentoPessoaInvalida", exception.Message);
+            }
             else if (exception is LeiteMaternoIndisponivelException)
             {
                 ModelState.AddModelError("LeiteMaternoIndisponivel", exception.Message);
@@ -49,14 +58,15 @@ namespace SistemaAleitamentoMaternoApi.Controllers
             else if (exception is PessoaInexistenteException)
             {
                 ModelState.AddModelError("PessoaNotFound", exception.Message);
-            } else
+            }
+            else
             {
                 ModelState.AddModelError("Genérica", exception.Message);
             }
         }
 
         [HttpPost]
-        public ActionResult<TEntity> Adicionar([FromBody] TEntity entidadeDto)
+        public virtual ActionResult<TEntity> Adicionar([FromBody] TEntity entidadeDto)
         {
             try
             {
@@ -75,7 +85,7 @@ namespace SistemaAleitamentoMaternoApi.Controllers
             }
         }
 
-        [HttpPatch]
+        [HttpPut]
         public ActionResult<TEntity> Atualizar([FromBody] TEntity entidadeDto)
         {
             try
@@ -85,7 +95,7 @@ namespace SistemaAleitamentoMaternoApi.Controllers
                 {
                     return NotFound();
                 }
-                applicationService.Atualizar(entidadeDtoCadastrada);
+                applicationService.Atualizar(entidadeDto);
                 var entidadePosOperacao = applicationService.FiltrarPorId(entidadeDto.Id);
                 return Ok(entidadePosOperacao);
             }

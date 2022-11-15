@@ -1,6 +1,4 @@
-﻿using SistemaAleitamentoMaternoApi.Dtos;
-
-namespace SistemaAleitamentoMaternoApi.Models
+﻿namespace SistemaAleitamentoMaternoApi.Models
 {
     public class Pessoa : BaseEntity
     {
@@ -9,7 +7,7 @@ namespace SistemaAleitamentoMaternoApi.Models
         public string Rg { get; set; }
         public string Cpf { get; set; }
         public Guid? EnderecoId { get; set; }
-        public virtual EnderecoDto Endereco { get; set; }
-        public virtual IEnumerable<ContatoDto> Contatos { get; set; }
+        public virtual Endereco Endereco { get; set; }
+        public virtual IEnumerable<Contato> Contatos { get; set; }
     }
 }

@@ -1,4 +1,7 @@
-﻿using SistemaAleitamentoMaternoApi.Interfaces.Repositories;
+﻿using SistemaAleitamentoMaternoApi.Exceptions.BancoAleitamento;
+using SistemaAleitamentoMaternoApi.Exceptions.Endereco;
+using SistemaAleitamentoMaternoApi.Exceptions.Pessoa;
+using SistemaAleitamentoMaternoApi.Interfaces.Repositories;
 using SistemaAleitamentoMaternoApi.Interfaces.Services;
 using SistemaAleitamentoMaternoApi.Models;
 
@@ -8,24 +11,36 @@ namespace SistemaAleitamentoMaternoApi.Services
     {
         private readonly IBancoAleitamentoRepository bancoRepository;
         private readonly IPessoaRepository pessoaRepository;
+        private readonly IEnderecoRepository enderecoRepository;
 
-        public BancoAleitamentoService(IBancoAleitamentoRepository bancoRepository, IPessoaRepository pessoaRepository) : base(bancoRepository)
+        public BancoAleitamentoService(IBancoAleitamentoRepository bancoRepository, IPessoaRepository pessoaRepository, IEnderecoRepository enderecoRepository) : base(bancoRepository)
         {
             this.bancoRepository = bancoRepository;
             this.pessoaRepository = pessoaRepository;
+            this.enderecoRepository = enderecoRepository;
         }
 
         public void TratarExcecoes(BancoAleitamento bancoLeite)
         {
-            //var pessoa = pessoaRepository.FiltrarPorId(contato.PessoaId);
-            //if (pessoa == null)
-            //{
-            //    throw new PessoaInexistenteException();
-            //}
-            //if (pessoa.Ativo == false)
-            //{
-            //    throw new PessoaInativaException();
-            //}
+            var pessoa = pessoaRepository.FiltrarPorId(bancoLeite.ResponsavelId);
+            if (pessoa == null)
+            {
+                throw new PessoaInexistenteException();
+            }
+            if (pessoa.Ativo == false)
+            {
+                throw new PessoaInativaException();
+            }
+            var pessoaJaEhResponsavelPorOutroBanco = bancoRepository.Listar().Any(banco =>  banco.ResponsavelId == pessoa.Id);
+            if  (pessoaJaEhResponsavelPorOutroBanco == true)
+            {
+                throw new BancoAleitamentoPessoaInvalidaException();
+            }
+            var endereco = enderecoRepository.FiltrarPorId(bancoLeite.EnderecoId);
+            if (endereco == null)
+            {
+                throw new EnderecoInexistenteException();
+            }
         }
 
         public override void Adicionar(BancoAleitamento bancoLeite)

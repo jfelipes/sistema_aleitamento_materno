@@ -5,18 +5,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SistemaAleitamentoMaternoApi.Migrations
 {
-    public partial class CriacaoNovaEntidadeBanco : Migration
+    public partial class CriacaoBancoAleitamento : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<Guid>(
                 name: "BancoAleitamentoId",
-                table: "LeitesMaterno",
-                type: "uuid",
-                nullable: true);
-
-            migrationBuilder.AddColumn<Guid>(
-                name: "BancoLeiteId",
                 table: "LeitesMaterno",
                 type: "uuid",
                 nullable: true);
@@ -134,10 +128,6 @@ namespace SistemaAleitamentoMaternoApi.Migrations
 
             migrationBuilder.DropColumn(
                 name: "BancoAleitamentoId",
-                table: "LeitesMaterno");
-
-            migrationBuilder.DropColumn(
-                name: "BancoLeiteId",
                 table: "LeitesMaterno");
         }
     }

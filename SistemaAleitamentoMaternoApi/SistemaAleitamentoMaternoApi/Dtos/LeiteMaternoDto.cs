@@ -9,7 +9,7 @@ namespace SistemaAleitamentoMaternoApi.Dtos
         [Required(ErrorMessage = "Você deve informar a pessoa que está realizando a doação.")]
         public Guid DoadorId { get; set; }
         [ForeignKey("BancoLeite")]
-        public Guid? BancoLeiteId { get; set; }
+        public Guid? BancoAleitamentoId { get; set; }
         public virtual BancoAleitamentoDto? BancoAleitamento { get; set; }
         public Guid? ReceptorId { get; set; } = null;
         public DateTime? DataEntrada { get; set; } = DateTime.UtcNow;

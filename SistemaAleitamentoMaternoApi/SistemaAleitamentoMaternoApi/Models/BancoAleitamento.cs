@@ -2,6 +2,10 @@
 {
     public class BancoAleitamento : BaseEntity
     {
-        public IEnumerable<LeiteMaterno> Estoque { get; set; }
+        public string Nome { get; set; }
+        public virtual IEnumerable<LeiteMaterno> Estoque { get; set; }
+        public Guid EnderecoId { get; set;
+        public Guid ResponsavelId { get; set; }
+        public virtual Endereco Endereco { get; set; }
     }
 }

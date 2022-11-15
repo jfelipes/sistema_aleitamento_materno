@@ -17,7 +17,8 @@ namespace SistemaAleitamentoMaternoApi.Repositories
         public IEnumerable<BancoAleitamento> Listar()
         {
             return context.Set<BancoAleitamento>()
-                .Include(bancoLeiteMaterno => bancoLeiteMaterno.Estoque)
+                .Include(bancoAleitamento => bancoAleitamento.Estoque)
+                .Include(bancoAleitamento => bancoAleitamento.Endereco)
                 .ToList();
         }
     }

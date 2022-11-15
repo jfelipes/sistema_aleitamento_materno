@@ -1,5 +1,4 @@
-﻿using SistemaAleitamentoMaternoApi.Enumerations;
-namespace SistemaAleitamentoMaternoApi.Models
+﻿namespace SistemaAleitamentoMaternoApi.Models
 {
     public class Comprovante : BaseEntity
     {

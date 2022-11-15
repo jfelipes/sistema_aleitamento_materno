@@ -15,7 +15,7 @@ namespace SistemaAleitamentoMaternoApi.Controllers
             this.applicationService = applicationService;
         }
 
-        [HttpPut("listar-pessoa/{guid}")]
+        [HttpGet("listar-pessoa/{guid}")]
         public ActionResult<IEnumerable<OperacaoDto>> OperacoesPorPessoa(Guid guid)
         {
             try

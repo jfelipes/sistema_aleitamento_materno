@@ -1,4 +1,5 @@
 ﻿using SistemaAleitamentoMaternoApi.ApplicationService;
+using SistemaAleitamentoMaternoApi.Exceptions.BancoAleitamento;
 using SistemaAleitamentoMaternoApi.Exceptions.LeiteMaterno;
 using SistemaAleitamentoMaternoApi.Exceptions.Pessoa;
 using SistemaAleitamentoMaternoApi.Interfaces.Repositories;
@@ -65,6 +66,13 @@ namespace SistemaAleitamentoMaternoApi.Services
                 if (leiteMaterno.DataRetirada == null)
                 {
                     leiteMaterno.DataRetirada = DateTime.UtcNow;
+                }
+            }
+            else
+            {
+                if (leiteMaterno.BancoAleitamentoId != null)
+                {
+                    throw new BancoAleitamentoInexistenteException();
                 }
             }
             TratarExcecoes(leiteMaterno);

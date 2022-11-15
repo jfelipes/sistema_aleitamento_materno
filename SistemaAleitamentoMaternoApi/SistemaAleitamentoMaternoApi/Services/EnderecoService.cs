@@ -12,10 +12,5 @@ namespace SistemaAleitamentoMaternoApi.Services
         {
             this.enderecoRepository = enderecoRepository;
         }
-
-        public void Adicionar(Endereco entidade)
-        {
-            base.Adicionar(entidade);
-        }
     }
 }
