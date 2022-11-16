@@ -1,0 +1,24 @@
+.container {
+  margin: 100px auto 150px;
+
+  display: flex;
+  justify-content: space-between;
+  align-self: center;
+  align-items: center;
+
+  font-size: 24px;
+  line-height: 110%;
+
+  text-transform: uppercase;
+  color: #fff;
+  a {
+    text-decoration: none;
+  }
+  .main-router {
+    font-weight: 700;
+  }
+  .router {
+    display: flex;
+    gap: 15px;
+  }
+}

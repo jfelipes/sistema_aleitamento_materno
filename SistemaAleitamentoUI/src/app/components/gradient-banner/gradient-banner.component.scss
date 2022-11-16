@@ -1,0 +1,51 @@
+@import '../../../styles.scss';
+.container {
+  display: block;
+  flex-direction: column;
+  .gradient-banner {
+    background: linear-gradient(95.15deg, #ED8093 0%, #EE8A9A 19.61%, #F9DDD2 98.96%);
+    padding: 40px;
+    text-align: center;
+    border-radius: 25px;
+    h1 {
+      color: $base-color;
+      font-size: 32px;
+      font-weight: 700;
+      line-height: 120%;
+      text-transform: uppercase;
+      margin-bottom: 15px;
+    }
+    p {
+      font-size: 32px;
+      font-weight: 700;
+      line-height: 110%;
+    }
+  }
+  .last-banner {
+    margin-top: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    text-align: left;
+    color: $gold-color;
+    font-size: 36px;
+    line-height: 120%;
+    font-weight: 600;
+    @media screen and (max-width: 1024px) {
+      display: block;
+      text-align: center;
+      p {
+        margin-bottom: 50px;
+      }
+    }
+    img {
+      background-color: $primary-color;
+      background-size: 400px 400px;
+      width: 450px;
+      border-radius: 50%;
+      shape-outside: circle(50%);
+      margin: 10px;
+    }
+  }
+}

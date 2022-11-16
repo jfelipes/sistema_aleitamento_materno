@@ -1,1 +1,137 @@
 /* You can add global styles to this file, and also import other style files */
+$base-color: #062f4f;
+$primary-color: #ed8093;
+$secondary-color: #f9f7f5;
+$gold-color: #eabc98;
+$white-color: #fff;
+$black-color: #000;
+$gray-color: #c2c2c2;
+
+$small: 480px;
+$medium: 960px;
+$transition: all 400ms ease;
+
+$container-width-lg: 75%;
+$container-width-md: 86%;
+$container-width-sm: 90%;
+
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background: $base-color;
+  color: $white-color;
+  line-height: 1.7;
+}
+
+/* ====== GENERAL ====== */
+.container {
+  width: $container-width-lg;
+  margin: 0 auto;
+}
+
+h1, h2, h3, h4, h5 {
+  font-weight: 500;
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+section {
+  padding-top: 4rem;
+  min-height: 100vh;
+}
+
+
+section > h2, section > h5 {
+  text-align: center;
+  color: $white-color;
+}
+
+section > h2 {
+  color: $primary-color;
+  margin-bottom: 3rem;
+}
+
+.text-light {
+  color: $secondary-color;
+}
+
+a {
+  color: $primary-color;
+  transition: $transition;
+  &:hover {
+    color: $white-color;
+  }
+}
+
+img {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+}
+
+/* ====== MOBILE MEDIUM ====== */
+@media screen and (max-width: 1024px) {
+  .container {
+      width:  $container-width-md;
+  }
+}
+/* ====== MOBILE SMALL ====== */
+@media screen and (max-width: 600px) {
+  .container {
+      width:  $container-width-sm;
+  }
+
+  section > h2 {
+      margin-bottom: 2rem;
+  }
+}
+
+[disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+button, a {
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: $primary-color;
+  color: $white-color;
+  border: 2px solid $primary-color;
+  font-size: 20px;
+  font-weight: 600;
+  padding: 10px 15px;
+  text-transform: uppercase;
+  transition: $transition;
+  border-radius: 85px;
+  &:hover {
+    background: $white-color;
+    color: $primary-color;
+    border: 2px solid $white-color;
+  }
+}
+
+.btn-outlined {
+  @extend .btn-primary;
+  background: transparent;
+  border: 2px solid $primary-color;
+}
