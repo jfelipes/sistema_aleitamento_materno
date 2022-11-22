@@ -1,27 +1,53 @@
 <div class="container">
   <div class="left-container">
-    <h1 class="title">Realização de agendamentos para<br>atendimentos, pedidos de doação e<br>coleta 100% online.</h1>
+    <h1 class="title">
+      Realização de agendamentos para atendimentos, pedidos de doação e coleta
+      100% online.
+    </h1>
     <div class="section">
-      <h3 class="section-title">Cadastro de necessidade de doação em<br>apenas alguns minutos</h3>
-      <p class="section-description">Tenha todo seu processo acompanhado por um agente<br>qualificado.</p>
+      <h3 class="section-title">
+        Cadastro de necessidade de doação em apenas alguns minutos
+      </h3>
+      <p class="section-description">
+        Tenha todo seu processo acompanhado por um agente qualificado.
+      </p>
     </div>
     <div class="section">
-      <h3 class="section-title">Coleta e doação em sua própria<br>residência</h3>
-      <p class="section-description">Caso não consigua comparecer ao banco de aleitamento<br>mais próximo, Receba a visita de um agente para<br>remoção/coleta do leite materno.</p>
+      <h3 class="section-title">Coleta e doação em sua própria residência</h3>
+      <p class="section-description">
+        Caso não consigua comparecer ao banco de aleitamento mais próximo,
+        Receba a visita de um agente para remoção/coleta do leite materno.
+      </p>
     </div>
   </div>
   <div class="right-container">
     <div class="section">
-      <h3 class="section-title">+100 bancos de aleitamento</h3>
-      <p class="section-description">Optaram pela utilização do nosso sistema para<br>abranger uma maior quantidade de necessitados.</p>
+      <h3 class="section-title">
+        {{ (quantidadeBancosdeAleitamento > 10) ? "+" +
+        (quantidadeBancosdeAleitamento / 10) : quantidadeBancosdeAleitamento
+        }} banco{{ quantidadeBancosdeAleitamento > 1 ? "s" : null}}</h3>
+      <p class="section-description">
+        Optaram pela utilização do nosso sistema para abranger uma maior
+        quantidade de necessitados.
+      </p>
     </div>
     <div class="section">
-      <h3 class="section-title">+10 pessoas</h3>
-      <p class="section-description">Foram beneficiadas através do nosso sistema,<br>criando vínculos afetivos mais fortes entre a mãe e o<br>bebê.</p>
+      <h3 class="section-title">
+        {{ (quantidadePessoasAptasBeneficio > 10) ? "+" +
+        (quantidadePessoasAptasBeneficio / 10) : quantidadePessoasAptasBeneficio
+        }} pessoa{{ quantidadePessoasAptasBeneficio > 1 ? "s" : null}}
+      </h3>
+      <p class="section-description">
+        Podem ser beneficiadas através do nosso sistema, possibilitando
+        melhorias nos vínculos afetivos mais fortes entre a mãe e o bebê.
+      </p>
     </div>
     <div class="section">
-      <h3 class="section-title">+20 unidades de leite materno em<br>estoque</h3>
-      <p class="section-description">dos bancos de aleitamento, o que permitem atingir<br>cada vez mais necessitados.</p>
+      <h3 class="section-title">{{ quantidadeMovimentacoes }} unidades de leite materno movimentados entre estoques</h3>
+      <p class="section-description">
+        dos bancos de aleitamento, o que permitem atingir cada vez mais
+        necessitados.
+      </p>
     </div>
   </div>
 </div>

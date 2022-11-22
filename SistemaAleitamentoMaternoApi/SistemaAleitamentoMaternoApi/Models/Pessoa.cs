@@ -8,6 +8,6 @@
         public string Cpf { get; set; }
         public Guid? EnderecoId { get; set; }
         public virtual Endereco Endereco { get; set; }
-        public virtual IEnumerable<Contato> Contatos { get; set; }
+        public virtual IEnumerable<Contato> Contatos { get; set; } = new List<Contato>();
     }
 }

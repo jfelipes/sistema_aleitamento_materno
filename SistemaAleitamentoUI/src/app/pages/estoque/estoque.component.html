@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="header">
+    <h3>Quantidade de registros: {{ estoque.length }}</h3>
+  </div>
+  <table *ngIf="estoque.length > 0">
+    <thead>
+      <tr>
+        <th>Status:</th>
+        <th>Doador</th>
+        <th>Receptor</th>
+        <th>Data de entrada</th>
+        <th>Data de saída</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let leiteMaterno of estoque">
+        <td>{{ leiteMaterno.disponivel ? "Disponível" : "Removido" }}</td>
+        <td>{{ getPessoaNome(leiteMaterno.doadorId) }}</td>
+        <td>{{ leiteMaterno.receptorId != null ? getPessoaNome(leiteMaterno.receptorId) : "Não removido" }}</td>
+        <td>{{ leiteMaterno.dataEntrada }}</td>
+        <td>{{ leiteMaterno.dataRetirada != null ? leiteMaterno.dataRetirada : "Não removido" }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -12,27 +12,5 @@ namespace SistemaAleitamentoMaternoApi.Controllers
         {
             this.applicationService = applicationService;
         }
-
-
-        [NonAction]
-        public override ActionResult<BancoAleitamentoDto> Adicionar([FromBody] BancoAleitamentoDto entidadeDto)
-        {
-            return BadRequest(entidadeDto);
-        }
-        [HttpPost]
-        public ActionResult<BancoAleitamentoDto> Adicionar()
-        {
-            try
-            {
-                var bancoAleitamentoDto = new BancoAleitamentoDto();
-                applicationService.Adicionar(bancoAleitamentoDto);
-                return Ok(bancoAleitamentoDto);
-            }
-            catch (Exception exception)
-            {
-                LidarComExcecoes(exception);
-                return BadRequest(ModelState);
-            }
-        }
     }
 }

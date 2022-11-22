@@ -1,0 +1,16 @@
+<input
+  type="text"
+  placeholder="Filtre bancos por nome"
+  (input)="filterBanco($event)"
+/>
+<ul *ngFor="let bancoData of filteredBancosData">
+  <li>
+    <h3>{{ bancoData.banco.nome }}</h3>
+    <div class="controllers">
+      <button title="Detalhar banco" *ngIf="bancoData.showingDetail == false" class="btn-outlined" (click)="changeBancoDetails(bancoData.banco.id)">Detalhar</button>
+      <button title="Fechar aba detalhamento" *ngIf="bancoData.showingDetail" class="btn-outlined" (click)="changeBancoDetails(bancoData.banco.id)">Fechar</button>
+      <button title="Deletar banco" class="btn-primary delete" (click)="deleteBanco(bancoData.banco.id)">Deletar</button>
+    </div>
+  </li>
+  <app-banco-detailing *ngIf="bancoData.showingDetail" [bancoData]="bancoData.banco"></app-banco-detailing>
+</ul>

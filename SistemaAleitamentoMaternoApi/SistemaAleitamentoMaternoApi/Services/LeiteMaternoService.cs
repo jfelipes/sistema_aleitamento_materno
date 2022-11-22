@@ -12,11 +12,13 @@ namespace SistemaAleitamentoMaternoApi.Services
     {
         private readonly ILeiteMaternoRepository leiteMaternoRepository;
         private readonly IPessoaRepository pessoaRepository;
+        private readonly IBancoAleitamentoRepository bancoRepository;
 
-        public LeiteMaternoService(ILeiteMaternoRepository leiteMaternoRepository, IPessoaRepository pessoaRepository) : base(leiteMaternoRepository)
+        public LeiteMaternoService(ILeiteMaternoRepository leiteMaternoRepository, IPessoaRepository pessoaRepository, IBancoAleitamentoRepository bancoRepository) : base(leiteMaternoRepository)
         {
             this.leiteMaternoRepository = leiteMaternoRepository;
             this.pessoaRepository = pessoaRepository;
+            this.bancoRepository = bancoRepository;
         }
 
         public void TratarExcecoes(LeiteMaterno leiteMaterno)
@@ -31,6 +33,11 @@ namespace SistemaAleitamentoMaternoApi.Services
             if (doador.Ativo == false || (foiInformadoReceptor && receptor.Ativo == false))
             {
                 throw new PessoaInativaException();
+            }
+            var bancoAleitamento = bancoRepository.FiltrarPorId(leiteMaterno.BancoAleitamentoId);
+            if (bancoAleitamento == null)
+            {
+                throw new BancoAleitamentoInexistenteException();
             }
             if (foiInformadoReceptor)
             {
@@ -61,20 +68,6 @@ namespace SistemaAleitamentoMaternoApi.Services
 
         public override void Adicionar(LeiteMaterno leiteMaterno)
         {
-            if (leiteMaterno.ReceptorId != null)
-            {
-                if (leiteMaterno.DataRetirada == null)
-                {
-                    leiteMaterno.DataRetirada = DateTime.UtcNow;
-                }
-            }
-            else
-            {
-                if (leiteMaterno.BancoAleitamentoId != null)
-                {
-                    throw new BancoAleitamentoInexistenteException();
-                }
-            }
             TratarExcecoes(leiteMaterno);
             base.Adicionar(leiteMaterno);
         }

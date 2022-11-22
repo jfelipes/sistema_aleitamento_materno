@@ -1,0 +1,26 @@
+
+.validation-error {
+  color: rgb(216, 42, 42);
+}
+.step-controller {
+  display: flex;
+  gap: 15px;
+}
+.contact-list {
+  .btn-primary {
+    border-color: #6d0700;
+    background: #6d0700;
+  }
+  ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.contato-add-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+}

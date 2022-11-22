@@ -4,6 +4,7 @@ using SistemaAleitamentoMaternoApi.Exceptions.Pessoa;
 using SistemaAleitamentoMaternoApi.Interfaces.Repositories;
 using SistemaAleitamentoMaternoApi.Interfaces.Services;
 using SistemaAleitamentoMaternoApi.Models;
+using System.ComponentModel;
 
 namespace SistemaAleitamentoMaternoApi.Services
 {
@@ -35,11 +36,6 @@ namespace SistemaAleitamentoMaternoApi.Services
             if  (pessoaJaEhResponsavelPorOutroBanco == true)
             {
                 throw new BancoAleitamentoPessoaInvalidaException();
-            }
-            var endereco = enderecoRepository.FiltrarPorId(bancoLeite.EnderecoId);
-            if (endereco == null)
-            {
-                throw new EnderecoInexistenteException();
             }
         }
 

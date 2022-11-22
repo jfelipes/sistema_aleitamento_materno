@@ -1,0 +1,17 @@
+<input
+  type="text"
+  placeholder="Filtre pessoas por nome"
+  (input)="filterPeople($event)"
+/>
+<ul *ngFor="let pessoaData of filteredPessoasData">
+  <li>
+    <h3>{{ pessoaData.pessoa.nome }}</h3>
+    <div class="controllers">
+      <button title="Abrir aba de detalhamento e edição de pessoa" *ngIf="pessoaData.showingDetail == false" class="btn-outlined" (click)="changePessoaDetails(pessoaData.pessoa.id)">Detalhes/Alterar</button>
+      <button title="Fechar/Cancelar aba de detalhamento e edição de pessoa" *ngIf="pessoaData.showingDetail" class="btn-outlined" (click)="changePessoaDetails(pessoaData.pessoa.id)">Cancelar</button>
+      <button title="Deletar pessoa" class="btn-primary delete" (click)="deletePessoa(pessoaData.pessoa.id)">Deletar</button>
+    </div>
+  </li>
+  <app-pessoa-editing *ngIf="pessoaData.showingDetail" [targetPessoa]="pessoaData.pessoa"
+  (pessoaUpdated)="savePessoa($event)"></app-pessoa-editing>
+</ul>

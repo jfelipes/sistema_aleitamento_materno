@@ -25,7 +25,7 @@ namespace SistemaAleitamentoMaternoApi.Controllers
         }
 
         [NonAction]
-        public virtual void LidarComExcecoes(Exception exception) 
+        public virtual void LidarComExcecoes(Exception exception)
         {
             if (exception is EnderecoInexistenteException)
             {

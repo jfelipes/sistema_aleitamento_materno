@@ -14,7 +14,19 @@ namespace SistemaAleitamentoMaternoApi.Repositories
             this.context = context;
         }
 
-        public IEnumerable<Pessoa> Listar()
+        public override Pessoa FiltrarPorId(Guid? id)
+        {
+            if (id == null)
+            {
+                return null;
+            }
+            return context.Set<Pessoa>().AsNoTracking()
+                .Include(pessoa => pessoa.Endereco)
+                .Include(pessoa => pessoa.Contatos)
+                .FirstOrDefault(entidade => entidade.Id == id);
+        }
+
+        public override IEnumerable<Pessoa> Listar()
         {
             return context.Set<Pessoa>()
                 .Include(pessoa => pessoa.Endereco)

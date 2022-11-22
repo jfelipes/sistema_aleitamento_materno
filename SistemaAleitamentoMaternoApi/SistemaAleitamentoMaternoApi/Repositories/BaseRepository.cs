@@ -14,19 +14,20 @@ namespace SistemaAleitamentoMaternoApi.Repositories
             this.context = context;
         }
 
-        public void Adicionar(TEntity entidade)
+        public virtual void Adicionar(TEntity entidade)
         {
             context.Set<TEntity>().Add(entidade);
             context.SaveChanges();
         }
 
-        public void Atualizar(TEntity entidade)
+        public virtual void Atualizar(TEntity entidade)
         {
-            context.Entry(entidade).State = EntityState.Modified;
+            //context.Entry(entidade).State = EntityState.Modified;
+            context.Update(entidade);
             context.SaveChanges();
         }
 
-        public TEntity FiltrarPorId(Guid? id)
+        public virtual TEntity FiltrarPorId(Guid? id)
         {
             if (id == null)
             {
@@ -35,18 +36,18 @@ namespace SistemaAleitamentoMaternoApi.Repositories
             return context.Set<TEntity>().AsNoTracking().FirstOrDefault(entidade => entidade.Id == id);
         }
 
-        public IEnumerable<TEntity> Listar()
+        public virtual IEnumerable<TEntity> Listar()
         {
             return context.Set<TEntity>().ToList();
         }
 
-        public void Remover(TEntity entidade)
+        public virtual void Remover(TEntity entidade)
         {
             context.Set<TEntity>().Remove(entidade);
             context.SaveChanges();
         }
 
-        public void Salvar()
+        public virtual void Salvar()
         {
             context.SaveChanges();
         }

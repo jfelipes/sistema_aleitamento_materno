@@ -1,0 +1,8 @@
+<div class="container">
+  <div class="control-section">
+    <button *ngIf="registryProcess === false" class="btn-primary" (click)="startRegisteringProcess()">Cadastre-se</button>
+    <button *ngIf="registryProcess" class="btn-outlined" (click)="stopRegisteringProcess()">Cancelar</button>
+  </div>
+  <app-pessoa-registering-process *ngIf="registryProcess"></app-pessoa-registering-process>
+  <app-pessoa-listing *ngIf="registryProcess == false"></app-pessoa-listing>
+</div>

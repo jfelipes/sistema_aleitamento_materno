@@ -14,6 +14,19 @@ namespace SistemaAleitamentoMaternoApi.Repositories
             this.context = context;
         }
 
+        public override BancoAleitamento FiltrarPorId(Guid? id)
+        {
+            if (id == null)
+            {
+                return null;
+            }
+            return context.Set<BancoAleitamento>().AsNoTracking()
+                .Include(pessoa => pessoa.Endereco)
+                .Include(pessoa => pessoa.Estoque)
+                .FirstOrDefault(entidade => entidade.Id == id);
+        }
+
+
         public IEnumerable<BancoAleitamento> Listar()
         {
             return context.Set<BancoAleitamento>()

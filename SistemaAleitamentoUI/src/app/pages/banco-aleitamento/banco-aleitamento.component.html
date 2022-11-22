@@ -1,0 +1,10 @@
+<div class="container">
+  <div class="control-section">
+    <button title="Abrir aba de cadastro de banco de aleitamento" *ngIf="registryProcess === false" class="btn-primary" (click)="startRegisteringProcess()">Cadastro</button>
+    <button title="Cancelar/Fechar aba de cadastro" *ngIf="registryProcess || registryLeiteProcess" class="btn-outlined" (click)="stopRegisteringProcess()">Cancelar</button>
+    <button title="Abrir aba de cadastro de leite materno" *ngIf="registryProcess === false" class="btn-primary" (click)="startLeiteRegisteringProcess()">Cadastrar Leite Materno</button>
+  </div>
+  <app-banco-registering-process *ngIf="registryProcess"></app-banco-registering-process>
+  <app-leite-materno-registering-process *ngIf="registryLeiteProcess"></app-leite-materno-registering-process>
+  <app-banco-listing *ngIf="registryProcess == false && registryLeiteProcess == false"></app-banco-listing>
+</div>

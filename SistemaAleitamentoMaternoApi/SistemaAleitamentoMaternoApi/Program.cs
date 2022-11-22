@@ -1,12 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using SistemaAleitamentoMaternoApi.ApplicationService;
 using SistemaAleitamentoMaternoApi.Data;
-using SistemaAleitamentoMaternoApi.Interfaces.ApplicationService;
-using SistemaAleitamentoMaternoApi.Interfaces.Repositories;
-using SistemaAleitamentoMaternoApi.Interfaces.Services;
-using SistemaAleitamentoMaternoApi.Profiles;
-using SistemaAleitamentoMaternoApi.Repositories;
-using SistemaAleitamentoMaternoApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 new DependencyInjector(builder.Services);
@@ -20,6 +13,13 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddEntityFrameworkNpgsql().AddDbContext<SistemaContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("ConexaoPostgre")));
 
+builder.Services.AddCors(policyBuilder =>
+    policyBuilder.AddDefaultPolicy(policy =>
+    {
+        policy.WithOrigins("*").WithHeaders("*").WithMethods("*");
+    })
+);
+
 var app = builder.Build();
 
 
@@ -29,11 +29,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseCors();
 
 app.UseHttpsRedirection();
+app.UseAuthorization();
 
-app.UseAuthorization();
-app.UseAuthorization();
 
 app.MapControllers();
 

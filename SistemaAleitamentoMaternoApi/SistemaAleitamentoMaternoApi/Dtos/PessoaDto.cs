@@ -23,7 +23,7 @@ namespace SistemaAleitamentoMaternoApi.Dtos
 
         [ForeignKey("Endereco")]
         public Guid? EnderecoId { get; set; }
-        public virtual Endereco Endereco { get; set; }
-        public virtual IEnumerable<Contato> Contatos { get; set; }
+        public Endereco Endereco { get; set; } 
+        public IEnumerable<Contato> Contatos { get; set; } = new List<Contato>();
     }
 }

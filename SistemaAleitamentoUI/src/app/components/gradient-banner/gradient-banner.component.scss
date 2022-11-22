@@ -7,6 +7,9 @@
     padding: 40px;
     text-align: center;
     border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
     h1 {
       color: $base-color;
       font-size: 32px;
@@ -16,7 +19,7 @@
       margin-bottom: 15px;
     }
     p {
-      font-size: 32px;
+      font-size: 24px;
       font-weight: 700;
       line-height: 110%;
     }
@@ -27,13 +30,17 @@
     align-items: center;
     justify-content: space-between;
 
-    text-align: left;
+    text-align: justify;
     color: $gold-color;
-    font-size: 36px;
+    font-size: 28px;
     line-height: 120%;
     font-weight: 600;
+    p {
+      padding-right: 20px;
+    }
     @media screen and (max-width: 1024px) {
-      display: block;
+      display: flex;
+      flex-direction: row;
       text-align: center;
       p {
         margin-bottom: 50px;
@@ -41,7 +48,6 @@
     }
     img {
       background-color: $primary-color;
-      background-size: 400px 400px;
       width: 450px;
       border-radius: 50%;
       shape-outside: circle(50%);

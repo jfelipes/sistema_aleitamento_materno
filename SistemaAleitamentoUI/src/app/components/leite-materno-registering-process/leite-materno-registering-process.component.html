@@ -1,0 +1,47 @@
+<div class="registering">
+  <h3>* Doador:</h3>
+  <input
+    type="text"
+    list="pessoas"
+    placeholder="Escolha a pessoa doadora"
+    (change)="selectDoador($event)"
+  />
+  <datalist id="pessoas">
+    <option *ngFor="let c of pessoas" [value]="c.nome">
+      {{ c.nome }}
+    </option>
+  </datalist>
+  <div class="validation-error">
+    <p *ngIf="selectedDoadorFlag == false">* É obrigatório informar um doador!</p>
+  </div>
+  <h3>* Banco de Aleitamento:</h3>
+  <input
+    type="text"
+    list="bancos"
+    placeholder="Escolha o banco de aleitamento"
+    (change)="selectBancoAleitamento($event)"
+  />
+  <datalist id="bancos">
+    <option *ngFor="let c of bancos" [value]="c.nome">
+      {{ c.nome }}
+    </option>
+  </datalist>
+  <div class="validation-error">
+    <p *ngIf="selectedBancoFlag == false">* É obrigatório informar um banco de aleitamento!</p>
+  </div>
+  <h3>Receptor:</h3>
+  <input
+    type="text"
+    list="pessoas"
+    placeholder="Escolha a pessoa receptora (caso o leite materno já esteja como doado)"
+    (change)="selectReceptor($event)"
+  />
+  <datalist id="pessoas">
+    <option *ngFor="let c of pessoas" [value]="c.nome">
+      {{ c.nome }}
+    </option>
+  </datalist>
+  <button *ngIf="selectedDoador != null" (click)="saveLeiteMaterno()" class="btn-primary">
+    Cadastrar
+  </button>
+</div>

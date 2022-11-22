@@ -23,6 +23,7 @@ $container-width-sm: 90%;
   box-sizing: border-box;
   list-style: none;
   text-decoration: none;
+  font-family: 'Outfit', sans-serif;
 }
 
 html {
@@ -34,7 +35,6 @@ html {
 }
 
 body {
-  font-family: 'Outfit', sans-serif;
   background: $base-color;
   color: $white-color;
   line-height: 1.7;
@@ -89,13 +89,13 @@ img {
 
 /* ====== MOBILE MEDIUM ====== */
 @media screen and (max-width: 1024px) {
-  .container {
+  .container, form {
       width:  $container-width-md;
   }
 }
 /* ====== MOBILE SMALL ====== */
 @media screen and (max-width: 600px) {
-  .container {
+  .container, form {
       width:  $container-width-sm;
   }
 
@@ -134,4 +134,28 @@ button, a {
   @extend .btn-primary;
   background: transparent;
   border: 2px solid $primary-color;
+}
+
+form {
+  background: $white-color;
+  color: $base-color;
+  padding: 2rem;
+  label {
+    font-size: 20px;
+    line-height: 120%;
+    font-weight: 600;
+    margin-bottom: 15px;
+  }
+}
+
+input {
+  font-size: 18px;
+  width: 100%;
+  line-height: 200%;
+  font-weight: 400;
+  padding: 10px 15px;
+  background: $secondary-color;
+  color: $black-color;
+  border-style: none;
+  outline: none;
 }

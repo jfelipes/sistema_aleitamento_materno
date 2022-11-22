@@ -1,0 +1,16 @@
+<table>
+  <thead>
+    <tr>
+      <th>Responsável</th>
+      <th>Quantidade registros do estoque</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{ responsavel.nome }}</td>
+      <td>{{ bancoData.estoque.length }}</td>
+      <td><button title="Detalhar estoque" class="btn-primary" (click)="goToEstoqueDetailingPage()">Estoque</button></td>
+      <td><button title="Detalhar endereço" class="btn-primary" (click)="goToEnderecoDetailingPage()">Endereço</button></td>
+    </tr>
+  </tbody>
+</table>

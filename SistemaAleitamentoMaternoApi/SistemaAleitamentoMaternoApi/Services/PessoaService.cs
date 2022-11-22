@@ -18,18 +18,6 @@ namespace SistemaAleitamentoMaternoApi.Services
 
         public void TratarExcecoes(Pessoa pessoa)
         {
-            if (pessoa.Endereco != null)
-            {
-                pessoa.EnderecoId = pessoa.Endereco.Id;
-            }
-            else
-            {
-                var endereco = pessoaRepository.FiltrarPorId(pessoa.EnderecoId);
-                if (pessoa.EnderecoId != null && endereco == null)
-                {
-                    throw new EnderecoInexistenteException();
-                }
-            }
         }
 
         public override void Adicionar(Pessoa pessoa)
@@ -41,8 +29,7 @@ namespace SistemaAleitamentoMaternoApi.Services
         public override void Atualizar(Pessoa pessoa)
         {
             TratarExcecoes(pessoa);
-            var pessoaCadastrada = pessoaRepository.FiltrarPorId(pessoa.Id);
-            base.Atualizar(pessoaCadastrada);
+            base.Atualizar(pessoa);
         }
     }
 }
