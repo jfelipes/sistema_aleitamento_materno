@@ -10,16 +10,10 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+Console.WriteLine("Connection String: " + builder.Configuration.GetConnectionString("ConexaoPostgres"));
 
 builder.Services.AddDbContext<SistemaContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("ConexaoPostgre")));
-
-builder.Services.AddCors(policyBuilder =>
-    policyBuilder.AddDefaultPolicy(policy =>
-    {
-        policy.WithOrigins("*").WithHeaders("*").WithMethods("*");
-    })
-);
+    options.UseNpgsql(builder.Configuration.GetConnectionString("ConexaoPostgres")));
 
 var app = builder.Build();
 using (var scope = app.Services.CreateScope())
@@ -37,7 +31,7 @@ using (var scope = app.Services.CreateScope())
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    using(var scope = app.Services.CreateScope())
+    using (var scope = app.Services.CreateScope())
     {
         var salesContext = scope.ServiceProvider.GetRequiredService<SistemaContext>();
         salesContext.Database.EnsureCreated();
