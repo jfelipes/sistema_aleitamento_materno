@@ -18,7 +18,3 @@ cd sistema_aleitamento_materno
 docker compose  up -d --build
 docker compose -f '...[path_do_arquivo]/sistema_aleitamento_materno/docker-compose.yml'  -p 'sistema_aleitamento_materno' start
 ```
-
-- O arquivo UML pode ser facilmente aberto através do site: https://app.diagrams.net/
-
-##### Done
