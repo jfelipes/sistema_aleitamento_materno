@@ -21,15 +21,15 @@ namespace SistemaAleitamentoMaternoApi.Repositories
                 return null;
             }
             return context.Set<BancoAleitamento>().AsNoTracking()
-                .Include(pessoa => pessoa.Endereco)
-                .Include(pessoa => pessoa.Estoque)
+                .Include(bancoAleitamento => bancoAleitamento.Endereco)
+                .Include(bancoAleitamento => bancoAleitamento.Estoque)
                 .FirstOrDefault(entidade => entidade.Id == id);
         }
 
 
         public IEnumerable<BancoAleitamento> Listar()
         {
-            return context.Set<BancoAleitamento>()
+            return context.Set<BancoAleitamento>().AsNoTracking()
                 .Include(bancoAleitamento => bancoAleitamento.Estoque)
                 .Include(bancoAleitamento => bancoAleitamento.Endereco)
                 .ToList();

@@ -1,0 +1,38 @@
+.step-controller {
+  display: flex;
+  gap: 1rem;
+}
+.contact-list {
+  ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.controller {
+  display: flex;
+  justify-content: space-between;
+}
+
+.contato-add-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  a {
+    color: rgb(0, 78, 30, 0.5);
+    font-size: 4rem;
+    text-align: center;
+    &:hover {
+      color: rgb(0, 78, 30, 1);
+    }
+  }
+}

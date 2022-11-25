@@ -2,13 +2,6 @@
 .container {
   display: flex;
   justify-content: space-between;
-  @media screen and (max-width: $small) {
-    //do Smth
-    // display: inline;
-  }
-  @media screen and (min-width: $medium) {
-    //do Smth
-  }
   .left-container {
     display: flex;
     flex-direction: column;

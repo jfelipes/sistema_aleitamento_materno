@@ -1,6 +1,26 @@
-.control-section {
+ul {
+  margin-top: 1.4rem;
+  li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    color: #052a47;
+    border-radius: 1.2rem;
+    padding: 1.6rem;
+    font-size: 2.4rem;
+  }
+}
+.controllers {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  gap: 15px;
+  gap: 30px;
+}
+.delete {
+  background: rgb(150, 0, 0);
+  border-color: rgb(150, 0, 0);
+  &:hover {
+    background: #fff;
+    border-color: #fff;
+    color: rgb(112, 0, 0);
+  }
 }

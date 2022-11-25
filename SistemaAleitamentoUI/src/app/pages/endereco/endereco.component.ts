@@ -6,7 +6,7 @@ import { EnderecoService } from 'src/app/services/endereco.service';
 @Component({
   selector: 'app-endereco',
   templateUrl: './endereco.component.html',
-  styleUrls: ['./endereco.component.scss']
+  styleUrls: ['./endereco.component.scss'],
 })
 export class EnderecoComponent implements OnInit {
   endereco: EnderecoDTO | undefined;
@@ -17,11 +17,11 @@ export class EnderecoComponent implements OnInit {
   ) {
     this.route.params.subscribe((params) => {
       let enderecoId = params['id'];
-      this.enderecoService.filter(enderecoId).subscribe((response) => this.endereco = response);
+      this.enderecoService
+        .filter(enderecoId)
+        .subscribe((response) => (this.endereco = response));
     });
   }
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

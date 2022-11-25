@@ -28,7 +28,7 @@ namespace SistemaAleitamentoMaternoApi.Repositories
 
         public override IEnumerable<Pessoa> Listar()
         {
-            return context.Set<Pessoa>()
+            return context.Set<Pessoa>().AsNoTracking()
                 .Include(pessoa => pessoa.Endereco)
                 .Include(pessoa => pessoa.Contatos)
                 .ToList();

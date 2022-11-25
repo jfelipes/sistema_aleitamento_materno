@@ -19,6 +19,10 @@ export class LeiteMaternoService {
     return this.http.post<LeiteMaternoDTO>(`${environment.apiBase}/leitematerno`, leite);
   }
 
+  delete(leiteId: string) {
+    return this.http.delete(`${environment.apiBase}/leitematerno/${leiteId}`);
+  }
+
   list() {
     return this.http.get<LeiteMaternoDTO[]>(`${environment.apiBase}/leitematerno`);
   }

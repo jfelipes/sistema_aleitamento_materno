@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "KlimQMVn4+ibVQ/pFD3xTeYaPsh+gb5mXfIF018+1JJxl5sLUINDvv2SGboBOx1cc6aGjPj/5qtrKtDlPrFsvA==",
+  "dgSpecHash": "vIRYeUL7agGTjns2wZ6trHBh7I9101rvIGVNns0QnOcscc8y7QIeo0pplHpACvQImIul7Q6cwc+8+Fu5fGe0gQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\jhonn\\Documents\\Repositórios\\sistema_aleitamento_materno_api\\SistemaAleitamentoMaternoApi\\SistemaAleitamentoMaternoApi\\SistemaAleitamentoMaternoApi.csproj",
   "expectedPackageFiles": [
@@ -32,6 +32,7 @@
     "C:\\Users\\jhonn\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Users\\jhonn\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
     "C:\\Users\\jhonn\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\jhonn\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.17.0\\microsoft.visualstudio.azure.containers.tools.targets.1.17.0.nupkg.sha512",
     "C:\\Users\\jhonn\\.nuget\\packages\\microsoft.web.infrastructure\\1.0.0\\microsoft.web.infrastructure.1.0.0.nupkg.sha512",
     "C:\\Users\\jhonn\\.nuget\\packages\\microsoft.win32.primitives\\4.3.0\\microsoft.win32.primitives.4.3.0.nupkg.sha512",
     "C:\\Users\\jhonn\\.nuget\\packages\\netstandard.library\\1.6.1\\netstandard.library.1.6.1.nupkg.sha512",

@@ -1,10 +1,7 @@
 import { PessoaDTO } from './../../models/pessoaDTO';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ContatoDTO } from 'src/app/models/contatoDTO';
 import { EnderecoDTO } from 'src/app/models/enderecoDTO';
-import { Router } from '@angular/router';
-import { PessoaService } from 'src/app/services/pessoa.service';
 
 @Component({
   selector: 'app-pessoa-editing',
@@ -19,6 +16,7 @@ export class PessoaEditingComponent implements OnInit {
   lastStep: number = 3;
 
   @Input() targetPessoa: PessoaDTO | undefined;
+  @Input('editavel') isEditavel: boolean = false;
   @Output() pessoaUpdated: EventEmitter<PessoaDTO> = new EventEmitter();
 
   endereco(): EnderecoDTO | undefined {
@@ -26,9 +24,7 @@ export class PessoaEditingComponent implements OnInit {
   }
 
   constructor(
-    private formBuilder: FormBuilder,
-    private pessoaService: PessoaService,
-    private router: Router
+    private formBuilder: FormBuilder
   ) {
     this.pessoaForm = this.formBuilder.group({
       nome: ['', Validators.compose([Validators.required])],
@@ -67,6 +63,9 @@ export class PessoaEditingComponent implements OnInit {
     this.bairro.setValue(this.targetPessoa?.endereco.bairro);
     this.numero.setValue(this.targetPessoa?.endereco.numero);
     this.complemento.setValue(this.targetPessoa?.endereco.complemento);
+    if (this.isEditavel === false) {
+      this.pessoaForm.disable();
+    }
   }
 
   get nome() {
@@ -116,6 +115,10 @@ export class PessoaEditingComponent implements OnInit {
       pessoaId: this.pessoaId,
       dado: dadoContato,
     });
+  }
+
+  turnEditable() {
+    this.pessoaForm.enable();
   }
 
   removeContato(contatoId: string) {

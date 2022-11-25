@@ -23,7 +23,7 @@ $container-width-sm: 90%;
   box-sizing: border-box;
   list-style: none;
   text-decoration: none;
-  font-family: 'Outfit', sans-serif;
+  font-family: "Outfit", sans-serif;
 }
 
 html {
@@ -35,7 +35,9 @@ html {
 }
 
 body {
-  background: $base-color;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.com/svgjs' width='1440' height='560' preserveAspectRatio='none' viewBox='0 0 1440 560'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1016%26quot%3b)' fill='none'%3e%3crect width='1440' height='560' x='0' y='0' fill='%230e2a47'%3e%3c/rect%3e%3cpath d='M101.02 382.44 a144.14 144.14 0 1 0 288.28 0 a144.14 144.14 0 1 0 -288.28 0z' fill='rgba(237%2c 128%2c 147%2c 0.2)' class='triangle-float2'%3e%3c/path%3e%3cpath d='M1115.189%2c605.899C1143.197%2c605.624%2c1169.968%2c591.725%2c1183.311%2c567.098C1196.106%2c543.482%2c1190.31%2c515.409%2c1176.789%2c492.202C1163.377%2c469.182%2c1141.831%2c450.205%2c1115.189%2c450.176C1088.506%2c450.147%2c1067.015%2c469.147%2c1053.357%2c492.069C1039.298%2c515.664%2c1031.599%2c544.323%2c1044.709%2c568.458C1058.318%2c593.512%2c1086.678%2c606.179%2c1115.189%2c605.899' fill='rgba(237%2c 128%2c 147%2c 0.2)' class='triangle-float1'%3e%3c/path%3e%3cpath d='M1170.67 9.37 a185.02 185.02 0 1 0 370.04 0 a185.02 185.02 0 1 0 -370.04 0z' fill='rgba(237%2c 128%2c 147%2c 0.2)' class='triangle-float3'%3e%3c/path%3e%3cpath d='M-21.08 446.01 a158.89 158.89 0 1 0 317.78 0 a158.89 158.89 0 1 0 -317.78 0z' fill='rgba(237%2c 128%2c 147%2c 0.2)' class='triangle-float1'%3e%3c/path%3e%3cpath d='M704 484.56 a118.92 118.92 0 1 0 237.84 0 a118.92 118.92 0 1 0 -237.84 0z' fill='rgba(237%2c 128%2c 147%2c 0.2)' class='triangle-float1'%3e%3c/path%3e%3cpath d='M693.03 268.42 a113.07 113.07 0 1 0 226.14 0 a113.07 113.07 0 1 0 -226.14 0z' fill='rgba(237%2c 128%2c 147%2c 0.2)' class='triangle-float2'%3e%3c/path%3e%3cpath d='M504.638%2c191.663C542.063%2c191.832%2c574.784%2c167.786%2c592.697%2c134.927C609.845%2c103.471%2c606.415%2c66.632%2c590.219%2c34.675C571.999%2c-1.278%2c544.905%2c-37.054%2c504.638%2c-38.834C462.076%2c-40.715%2c423.957%2c-11.604%2c404.868%2c26.484C387.509%2c61.12%2c397.918%2c100.972%2c417.949%2c134.135C437.166%2c165.952%2c467.468%2c191.495%2c504.638%2c191.663' fill='rgba(237%2c 128%2c 147%2c 0.2)' class='triangle-float3'%3e%3c/path%3e%3cpath d='M273.902%2c501.815C287.754%2c502.079%2c300.054%2c494.122%2c307.491%2c482.432C315.593%2c469.697%2c320.189%2c453.741%2c312.889%2c440.53C305.404%2c426.983%2c289.371%2c422.126%2c273.902%2c421.643C257.331%2c421.126%2c238.2%2c423.296%2c230.459%2c437.957C222.975%2c452.133%2c233.445%2c467.937%2c242.462%2c481.191C250.018%2c492.297%2c260.471%2c501.559%2c273.902%2c501.815' fill='rgba(237%2c 128%2c 147%2c 0.2)' class='triangle-float1'%3e%3c/path%3e%3cpath d='M711.822%2c626.953C758.338%2c625.713%2c794.574%2c592.132%2c818.493%2c552.217C843.273%2c510.864%2c857.44%2c462.048%2c836.727%2c418.515C813.051%2c368.755%2c766.927%2c328.082%2c711.822%2c328.024C656.64%2c327.966%2c611.463%2c369.059%2c586.457%2c418.25C563.762%2c462.894%2c569.033%2c515.249%2c594.821%2c558.18C619.788%2c599.745%2c663.352%2c628.245%2c711.822%2c626.953' fill='rgba(237%2c 128%2c 147%2c 0.2)' class='triangle-float1'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1016'%3e%3crect width='1440' height='560' fill='white'%3e%3c/rect%3e%3c/mask%3e%3cstyle%3e %40keyframes float1 %7b 0%25%7btransform: translate(0%2c 0)%7d 50%25%7btransform: translate(-10px%2c 0)%7d 100%25%7btransform: translate(0%2c 0)%7d %7d .triangle-float1 %7b animation: float1 5s infinite%3b %7d %40keyframes float2 %7b 0%25%7btransform: translate(0%2c 0)%7d 50%25%7btransform: translate(-5px%2c -5px)%7d 100%25%7btransform: translate(0%2c 0)%7d %7d .triangle-float2 %7b animation: float2 4s infinite%3b %7d %40keyframes float3 %7b 0%25%7btransform: translate(0%2c 0)%7d 50%25%7btransform: translate(0%2c -10px)%7d 100%25%7btransform: translate(0%2c 0)%7d %7d .triangle-float3 %7b animation: float3 6s infinite%3b %7d %3c/style%3e%3c/defs%3e%3c/svg%3e");
+  background-attachment: fixed;
+  background-size: cover;
   color: $white-color;
   line-height: 1.7;
 }
@@ -46,7 +48,11 @@ body {
   margin: 0 auto;
 }
 
-h1, h2, h3, h4, h5 {
+h1,
+h2,
+h3,
+h4,
+h5 {
   font-weight: 500;
 }
 
@@ -58,8 +64,8 @@ section {
   min-height: 100vh;
 }
 
-
-section > h2, section > h5 {
+section > h2,
+section > h5 {
   text-align: center;
   color: $white-color;
 }
@@ -89,18 +95,20 @@ img {
 
 /* ====== MOBILE MEDIUM ====== */
 @media screen and (max-width: 1024px) {
-  .container, form {
-      width:  $container-width-md;
+  .container,
+  form {
+    width: $container-width-md;
   }
 }
 /* ====== MOBILE SMALL ====== */
 @media screen and (max-width: 600px) {
-  .container, form {
-      width:  $container-width-sm;
+  .container,
+  form {
+    width: $container-width-sm;
   }
 
   section > h2 {
-      margin-bottom: 2rem;
+    margin-bottom: 2rem;
   }
 }
 
@@ -109,53 +117,79 @@ img {
   cursor: not-allowed;
 }
 
-button, a {
+button,
+a {
   cursor: pointer;
 }
 
 .btn-primary {
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px,
+    rgba(0, 0, 0, 0.22) 0px 10px 10px;
   background: $primary-color;
   color: $white-color;
-  border: 2px solid $primary-color;
-  font-size: 20px;
+  border: 0.35rem solid $primary-color;
+  font-size: 1.4rem;
   font-weight: 600;
-  padding: 10px 15px;
-  text-transform: uppercase;
+  padding: 0.8rem;
+  text-transform: capitalize;
   transition: $transition;
-  border-radius: 85px;
+  border-radius: 3rem;
   &:hover {
     background: $white-color;
     color: $primary-color;
-    border: 2px solid $white-color;
+    border-color: $white-color;
   }
 }
 
 .btn-outlined {
   @extend .btn-primary;
   background: transparent;
-  border: 2px solid $primary-color;
 }
 
 form {
   background: $white-color;
   color: $base-color;
+  margin: 1rem 0;
   padding: 2rem;
+  border-radius: 3rem;
   label {
-    font-size: 20px;
+    font-size: 1.4rem;
     line-height: 120%;
     font-weight: 600;
-    margin-bottom: 15px;
+    margin-bottom: 0.8rem;
   }
 }
 
 input {
-  font-size: 18px;
   width: 100%;
+  border-radius: 1rem;
+  font-size: 1.5rem;
   line-height: 200%;
   font-weight: 400;
-  padding: 10px 15px;
+  padding: 0.8rem 1.5rem;
   background: $secondary-color;
   color: $black-color;
   border-style: none;
   outline: none;
+}
+
+.validation-error {
+  color: #6d0700;
+}
+
+.btn-remove {
+  @extend .btn-primary;
+  border-color: #6d0700;
+  background: #6d0700;
+}
+
+.step-counter {
+  text-align: center;
+  color: gold;
+  font-size: 1.8rem;
+}
+
+span {
+  font-size: 1rem;
+  color: gray;
 }

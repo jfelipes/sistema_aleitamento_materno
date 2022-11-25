@@ -1,8 +1,8 @@
 <div class="container">
   <div class="header">
-    <h3>Quantidade de registros: {{ estoque.length }}</h3>
+    <h4>Quantidade de registros: {{ estoque.length }}</h4>
   </div>
-  <table *ngIf="estoque.length > 0">
+  <table *ngIf="estoque.length > 0; else messageNotFound">
     <thead>
       <tr>
         <th>Status:</th>
@@ -19,7 +19,12 @@
         <td>{{ leiteMaterno.receptorId != null ? getPessoaNome(leiteMaterno.receptorId) : "Não removido" }}</td>
         <td>{{ leiteMaterno.dataEntrada }}</td>
         <td>{{ leiteMaterno.dataRetirada != null ? leiteMaterno.dataRetirada : "Não removido" }}</td>
+        <td><button class="btn-primary">Retirar</button></td>
+        <td><button class="btn-remove" (click)="deletarLeiteMaterno(leiteMaterno.id)">deletar</button></td>
       </tr>
     </tbody>
   </table>
+  <ng-template #messageNotFound>
+    <h4 style="color: red;">Não foram encontrados registros no estoque!</h4>
+  </ng-template>
 </div>

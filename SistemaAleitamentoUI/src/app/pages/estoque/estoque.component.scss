@@ -7,15 +7,15 @@ table {
   color: #062f4f;
   width: 100%;
   border-collapse: collapse;
-  margin: 25px 0;
-  font-size: 0.9em;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  margin: 2rem 0;
+  font-size: 0.9rem;
   thead, tr {
+    text-transform: capitalize;
     text-align: left;
-    font-size: 18px;
+    font-size: 1.4rem;
   }
   th, tr, td {
-    padding: 12px 15px;
+    padding: 1rem;
   }
 }
 

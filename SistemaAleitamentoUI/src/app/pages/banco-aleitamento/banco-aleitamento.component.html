@@ -1,10 +1,41 @@
 <div class="container">
-  <div class="control-section">
-    <button title="Abrir aba de cadastro de banco de aleitamento" *ngIf="registryProcess === false" class="btn-primary" (click)="startRegisteringProcess()">Cadastro</button>
-    <button title="Cancelar/Fechar aba de cadastro" *ngIf="registryProcess || registryLeiteProcess" class="btn-outlined" (click)="stopRegisteringProcess()">Cancelar</button>
-    <button title="Abrir aba de cadastro de leite materno" *ngIf="registryProcess === false" class="btn-primary" (click)="startLeiteRegisteringProcess()">Cadastrar Leite Materno</button>
-  </div>
-  <app-banco-registering-process *ngIf="registryProcess"></app-banco-registering-process>
-  <app-leite-materno-registering-process *ngIf="registryLeiteProcess"></app-leite-materno-registering-process>
-  <app-banco-listing *ngIf="registryProcess == false && registryLeiteProcess == false"></app-banco-listing>
+  <input
+    type="text"
+    placeholder="Filtre bancos por nome"
+    (input)="filterBanco($event)"
+  />
+  <ul *ngFor="let bancoData of filteredBancosData">
+    <li>
+      <h3>{{ bancoData.banco.nome }}</h3>
+      <div class="controllers">
+        <button
+          title="Detalhar banco"
+          *ngIf="bancoData.showingDetail == false"
+          class="btn-primary"
+          (click)="changeBancoDetails(bancoData.banco.id)"
+        >
+          Detalhar
+        </button>
+        <button
+          title="Fechar aba detalhamento"
+          *ngIf="bancoData.showingDetail"
+          class="btn-primary"
+          (click)="changeBancoDetails(bancoData.banco.id)"
+        >
+          Fechar
+        </button>
+        <button
+          title="Deletar banco"
+          class="btn-primary delete"
+          (click)="deleteBanco(bancoData.banco.id)"
+        >
+          Deletar
+        </button>
+      </div>
+    </li>
+    <app-banco-detailing
+      *ngIf="bancoData.showingDetail"
+      [bancoData]="bancoData.banco"
+    ></app-banco-detailing>
+  </ul>
 </div>

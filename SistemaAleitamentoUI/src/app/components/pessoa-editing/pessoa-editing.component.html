@@ -116,22 +116,26 @@
     </div>
   </div>
   <div *ngIf="currentStep == 3" class="contato-add-group">
-    <div class="form-group">
-      <label>Dado contato:</label>
-      <input #dadoContato type="text" placeholder="Informe o dado" />
+    <h3>Formas de contato:</h3>
+    <div *ngIf="isEditavel" class="contato-header">
+      <div class="form-group">
+        <label>Dado contato:</label>
+        <input #dadoContato type="text" placeholder="Informe o dado" />
+      </div>
+      <button
+        title="Cadastrar novo contato"
+        type="button"
+        class="btn-primary"
+        (click)="registerContato(dadoContato.value)"
+      >
+        Adicionar
+      </button>
     </div>
-    <button
-      title="Cadastrar novo contato"
-      type="button"
-      class="btn-primary"
-      (click)="registerContato(dadoContato.value)"
-    >
-      Adicionar
-    </button>
     <div *ngIf="targetPessoa!.contatos.length > 0" class="contact-list">
       <ul *ngFor="let contato of targetPessoa!.contatos">
         <li>{{ contato.dado }}</li>
         <button
+          *ngIf="isEditavel"
           title="Remover contato cadastrado"
           class="btn-primary"
           (click)="removeContato(contato.id)"
@@ -160,7 +164,7 @@
     </button>
     <button
       title="Salvar edições feita em pessoa"
-      *ngIf="currentStep === lastStep"
+      *ngIf="currentStep === lastStep && isEditavel"
       type="submit"
       class="btn-primary"
     >

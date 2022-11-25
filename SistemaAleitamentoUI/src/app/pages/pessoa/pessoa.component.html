@@ -1,8 +1,51 @@
 <div class="container">
-  <div class="control-section">
-    <button *ngIf="registryProcess === false" class="btn-primary" (click)="startRegisteringProcess()">Cadastre-se</button>
-    <button *ngIf="registryProcess" class="btn-outlined" (click)="stopRegisteringProcess()">Cancelar</button>
-  </div>
-  <app-pessoa-registering-process *ngIf="registryProcess"></app-pessoa-registering-process>
-  <app-pessoa-listing *ngIf="registryProcess == false"></app-pessoa-listing>
+  <input
+    type="text"
+    placeholder="Filtre pessoas por nome"
+    (input)="filterPeople($event)"
+  />
+  <ul *ngFor="let pessoaData of filteredPessoasData">
+    <li>
+      <h3>{{ pessoaData.pessoa.nome }}</h3>
+      <div class="controllers">
+        <button
+          title="Abrir aba de detalhamento e edição de pessoa"
+          *ngIf="pessoaData.showingDetail == false"
+          class="btn-primary"
+          (click)="changePessoaDetails(pessoaData.pessoa.id, true)"
+        >
+          Alterar
+        </button>
+        <button
+          title="Abrir aba de detalhamento e edição de pessoa"
+          *ngIf="pessoaData.showingDetail == false"
+          class="btn-primary"
+          (click)="changePessoaDetails(pessoaData.pessoa.id)"
+        >
+          Detalhes
+        </button>
+        <button
+          title="Fechar/Cancelar aba de detalhamento e edição de pessoa"
+          *ngIf="pessoaData.showingDetail"
+          class="btn-primary"
+          (click)="changePessoaDetails(pessoaData.pessoa.id)"
+        >
+          Cancelar
+        </button>
+        <button
+          title="Deletar pessoa"
+          class="btn-remove"
+          (click)="deletePessoa(pessoaData.pessoa.id)"
+        >
+          Deletar
+        </button>
+      </div>
+    </li>
+    <app-pessoa-editing
+      *ngIf="pessoaData.showingDetail"
+      [editavel]="pessoaData.editavel"
+      [targetPessoa]="pessoaData.pessoa"
+      (pessoaUpdated)="savePessoa($event)"
+    ></app-pessoa-editing>
+  </ul>
 </div>

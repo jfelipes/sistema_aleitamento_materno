@@ -1,0 +1,40 @@
+<div class="container">
+  <form [formGroup]="leiteMaternoForm" (ngSubmit)="saveLeiteMaterno()">
+    <div class="form-elements">
+      <label for="doador">Doador:</label>
+      <select formControlName="doador">
+        <option [ngValue]="null">Selecionar Doador</option>
+        <option *ngFor="let pessoa of pessoas" [ngValue]="pessoa.id">
+          {{ pessoa.nome }}
+        </option>
+      </select>
+    </div>
+    <div class="validation-error">
+      <p *ngIf="doador.errors?.['required']">* O doador é obrigatório!</p>
+    </div>
+    <div class="form-elements">
+      <label for="bancoaleitamento">Banco de Aleitamento:</label>
+      <select formControlName="banco">
+        <option [ngValue]="null">
+          Selecionar Banco de Aleitamento
+        </option>
+        <option *ngFor="let banco of bancos" [ngValue]="banco.id">
+          {{ banco.nome }}
+        </option>
+      </select>
+    </div>
+    <div class="validation-error">
+      <p *ngIf="banco.errors?.['required']">* O banco é obrigatório!</p>
+    </div>
+    <div class="form-elements">
+      <label for="receptor">Receptor <span>(opcional)</span></label>
+      <select formControlName="receptor">
+        <option [ngValue]="null">Selecionar Receptor</option>
+        <option *ngFor="let pessoa of pessoas" [ngValue]="pessoa.id">
+          {{ pessoa.nome }}
+        </option>
+      </select>
+    </div>
+    <button type="submit" class="btn-primary">Cadastrar</button>
+  </form>
+</div>
