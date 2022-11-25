@@ -4,22 +4,20 @@
 
 Essa aplicação tornará possível a interligação entre **lactantes doadoras** e possíveis **receptores**. Permitindo o contato entre esses e também o agendamento de visitas para coletas e/ou remoções em suas próprias casas, ou bancos, ampliando cada vez mais esse direito. Interligação entre bancos de leite para atender um maior número de necessitados.
 
-##### TODO:
+#### Front-End:
 
-> Cadastros e Edição
+O front-end conta com um visual minimalista produzido em Angular juntamente com scss.
 
-- [x] Endereço.
-- [x] Forma de Contato.
-- [x] Pessoa.
-- [ ] Leite Materno (Interligado os bancos de leite).
-- [ ] Comprovante.
-- [ ] Agendamento.
+##### Instruções de uso:
 
-> Possíveis Implementações
-
-- [ ] Possibilitar contato direto entre interessados na iniciativa.
-
-##### Instruções:
+- Você deve ter o <a href="https://docs.docker.com/get-docker/">Docker</a> e o <a href="https://docs.docker.com/compose/install/">Docker Compose</a> Instalado em sua máquina.
+- Como o projeto está totalmente dockerizado, para sua utilização, é necessário repetir os seguintes comandos:
+```
+git clone https://github.com/yJFelipeSS/sistema_aleitamento_materno.git
+cd sistema_aleitamento_materno
+docker compose  up -d --build
+docker compose -f '...[path_do_arquivo]/sistema_aleitamento_materno/docker-compose.yml'  -p 'sistema_aleitamento_materno' start
+```
 
 - O arquivo UML pode ser facilmente aberto através do site: https://app.diagrams.net/
 
